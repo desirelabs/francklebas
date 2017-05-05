@@ -1,0 +1,7 @@
+.content-section {
+  background-color: #fff;
+  padding: 4rem 0;
+  &:nth-child(even) {
+    background-color: #eee;
+  }
+}

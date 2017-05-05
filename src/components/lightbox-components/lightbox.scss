@@ -1,0 +1,116 @@
+.lightbox {
+  position: fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color: rgba(0,0,0,0.8);
+
+  .ui.dimmer {
+    background-color: transparent !important;
+  }
+
+  // TODO close icon style
+  .lightbox-close {
+    width: 3rem;
+    height: 3rem;
+    position: fixed;
+    right: 3rem;
+    top: 3rem;
+    font-size: 3rem;
+    color: #000;
+    .icon {
+      transition: transform .3s;
+    }
+    &:hover{
+      cursor: pointer;
+      .icon {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  // Nav animation
+  .lightbox-right-enter-active,
+  .lightbox-right-leave-active{
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+  }
+  .lightbox-right-enter-active { animation: lightboxRightIn .5s; }
+  .lightbox-right-leave-active { animation: lightboxRightOut .5s; }
+  @keyframes lightboxRightIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes lightboxRightOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  .lightbox-left-enter-active,
+  .lightbox-left-leave-active  {
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+  }
+  .lightbox-left-enter-active { animation: lightboxLeftIn .5s; }
+  .lightbox-left-leave-active { animation: lightboxLeftOut .5s; }
+  @keyframes lightboxLeftIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes lightboxLeftOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  // TODO nav icon style
+  .lightbox-nav {
+    background-color: #000;
+    border: none;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 2rem;
+    color: #fff;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-30px);
+    left: 20px;
+  }
+  .lightbox-nav:focus {
+    outline: none;
+  }
+  .lightbox-next {
+    left: unset;
+    right: 20px !important;
+  }
+}
+
+.lightbox-image {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

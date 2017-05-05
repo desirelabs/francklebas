@@ -1,0 +1,65 @@
+
+.slide-fade-enter-active {
+  transition: all 1s ease;
+}
+.slide-fade-leave-active {
+  transition: all 1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+  /* .slide-fade-leave-active for <2.1.8 */ {
+  transform: translateX(70px);
+  opacity: 0;
+}
+.post {
+  position: relative;
+  margin-bottom: 3rem;
+}
+.post-header {
+  position: relative;
+}
+.post-header img {
+  max-width: 100%;
+}
+.post .post-content {
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1rem;
+  transition: max-height .5s;
+  &.full {
+    transition: max-height .5s;
+    max-height: inherit;
+  }
+}
+.posts.list .post .post-content {
+  max-height: calc(39.6px * 3);
+}
+.post .post-content.hidden::after {
+  content: '';
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.9));
+}
+.ui.button.read-more {
+  position: relative;
+  margin-bottom: 3rem;
+  background-color: transparent;
+}
+.ui.button.read-more::before,
+.ui.button.read-more::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background-color: rgba(0,0,0,.2);
+  position: absolute;
+  top: 50%;
+}
+.ui.button.read-more::before {
+  left: calc(50% - 90px);
+}
+.ui.button.read-more::after {
+  right: calc(50% - 90px);
+}

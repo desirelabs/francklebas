@@ -1,27 +1,69 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
+import Articles from '@/components/Blog/Articles'
+import Lightbox from '@/components/lightbox-components/Lightbox'
+import Portfolio from '@/components/Portfolio/Portfolio'
 import Component from '@/components/Component'
-import Form from '@/components/Form'
+import Contact from '@/components/Contact'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'Acceuil',
+      components: {
+        hello: Hello
+      }
+    }, /*
+     {
+     path: '/lightbox',
+     name: 'Lightbox',
+     components: {
+     lightbox:Lightbox
+     }
+     },*/
+    {
+      path: '/portfolio',
+      name: 'Portfolio',
+      components: {
+        portfolio: Portfolio
+      }
     },
     {
       path: '/comp',
       name: 'Component',
-      component: Component
+      components: {
+        Component
+      }
     },
     {
-      path: '/form',
-      name: 'Form',
-      component: Form
+      path: '/articles/:page(\\d+)',
+      name: 'Articles',
+      components: {
+        blog: Articles
+      }
+    },
+    {
+      path: '/:article?',
+      name: 'Article',
+      components: {
+        blog: Articles
+      }
+    },
+    {
+      path: '/contact',
+      name: 'Contact',
+      components: {
+        contact: Contact
+      }
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 })
