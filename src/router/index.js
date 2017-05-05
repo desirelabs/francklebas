@@ -34,6 +34,13 @@ export default new Router({
       }
     },
     {
+      path: '/portfolio/:id',
+      name: 'Portfolio',
+      components: {
+        portfolio: Portfolio
+      }
+    },
+    {
       path: '/comp',
       name: 'Component',
       components: {
@@ -42,6 +49,13 @@ export default new Router({
     },
     {
       path: '/articles/:page(\\d+)',
+      name: 'Articles',
+      components: {
+        blog: Articles
+      }
+    },
+    {
+      path: '/articles/all',
       name: 'Articles',
       components: {
         blog: Articles

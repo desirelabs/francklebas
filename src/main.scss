@@ -1,5 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Francois+One|Merriweather:300|Julius+Sans+One|Montserrat');
+
 @import "assets/scss/mixins";
+@import "assets/scss/typography";
+@import "assets/scss/spacer";
+
 * {
     box-sizing: border-box;
 }
@@ -17,7 +20,7 @@ p {
 }
 body,
 .ui.text.container {
-    font-family: 'Merriweather', serif;
+    font-family: 'webfontregular', serif;
 }
 h1, h2, h3, h4, h5, h6 {
     font-family:  'François One', sans-serif;
@@ -38,6 +41,15 @@ header {
             margin: 2rem auto 1.5rem;
         }
     }
+}
+.totop {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    cursor: pointer;
 }
 .ui.menu {
     margin-bottom: 0;

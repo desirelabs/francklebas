@@ -10,8 +10,10 @@
         <div class="item">
           <div class="ui action left icon input">
             <i class="search icon"></i>
-            <input type="text" placeholder="Search">
-            <button class="ui button">Submit</button>
+            <input type="text" placeholder="Recherche" v-model="search" @keypress.enter="queryPost">
+            <button class="ui button" @click.prevent="queryPost">
+              <i class="search icon"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -25,6 +27,9 @@
         &copy; Picolabs - {{annee}}
       </div>
     </footer>
+    <div class="totop">
+      <i class="angle up icon"></i>
+    </div>
   </div>
 </template>
 
@@ -33,11 +38,47 @@
     name: 'app',
     data() {
       return {
-        annee: ""
+        annee: "",
+        search: ""
+      }
+    },
+    computed: {
+      search() {
+        return this.search
+      }
+    },
+    methods: {
+      queryPost() { // TODO empty search
+        if ( this.search !== "" )
+          this.$router.push({path: '/articles/all', query: { search: this.search}})
       }
     },
     mounted() {
       this.annee = new Date().getFullYear()
+
+
+      $(document).ready(function () {
+        // Trigger scrolling event
+        $(window).scroll(function () {
+          console.log($(this).scrollTop())
+          if ($(this).scrollTop() > 100) {
+            $('.totop').fadeIn();
+          } else {
+            $('.totop').fadeOut();
+          }
+        });
+
+        // Trigger click on the button
+        $('body').on('click', '.totop', function () {
+          $("html, body").animate({
+            scrollTop: 0
+          }, 600);
+          return false;
+        });
+
+      });
+
+
     }
   }
 </script>

@@ -6,9 +6,8 @@
       <div class="post-metadatas">
         <span class="author">Publié par {{post.author_name}}</span>
         <br>
-        <span class="date">{{post.date | moment}}</span>
-        <!--<br>
-        <span class="comments"><small></small></span>-->
+        <span class="date">Le {{post.date | moment}}</span>
+        <div class="spacer"></div>
       </div>
     </header>
     <div class="post-content" v-html="post.content" :class="{'full': post.fullArticle == true}"></div>
@@ -32,11 +31,5 @@
         return moment(date).format('D MMMM YYYY')
       }
     },
-    computed: {
-
-    },
-    mounted() {
-
-    }
   }
 </script>
