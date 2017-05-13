@@ -1,0 +1,42 @@
+$primary: #F03861;
+
+.ui.menu  {
+  flex-direction: column;
+  box-shadow: none;
+  border: none;
+  .menu-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+  .item {
+    font-family: Montserrat, sans-serif;
+    font-size: .9rem;
+    line-height: 3rem;
+    display: block;
+    padding: 0 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all .3s;
+    box-sizing: border-box;
+    &::before {
+      display: none;
+    }
+    &.router-link-active,
+    &:hover {
+      background: none !important;
+      span::after {
+        content: '';
+        width: calc(100% - 64px);
+        display: inline-block;
+        position: absolute;
+        bottom: -5px;
+        left: 32px;
+        right: 32px;
+        height: 3px;
+        background-color: $primary;
+      }
+    }
+  }
+}

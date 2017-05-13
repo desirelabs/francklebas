@@ -1,6 +1,5 @@
 <template>
   <div>
-    <slider></slider>
     <div class="ui vertical">
       <skill></skill>
     </div>
@@ -14,7 +13,7 @@
   export default {
     name: 'hello',
     components: {
-      Slider, Slide, Skill
+      Skill
     },
     data () {
       return {

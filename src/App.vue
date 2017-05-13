@@ -1,12 +1,14 @@
 <template>
   <div id="wrapper" class="pusher">
-    <div class="ui menu fixed">
-      <div class="header item">Brand</div>
-      <router-link :to="{name:'Acceuil'}" class="item">Accueil</router-link>
-      <router-link :to="{name:'Portfolio'}" class="item">Portfolio</router-link>
-      <router-link :to="{name:'Articles', params: { page: 1 }}" class="item">Le blog</router-link>
-      <router-link :to="{name:'Contact'}" class="item">Contact</router-link>
-      <div class="right menu">
+    <div class="ui menu">
+      <!--<div class="header item">Brand</div>-->
+      <div class="menu-links">
+        <router-link :to="{name:'Acceuil'}" exact class="item"><span>Accueil</span></router-link>
+        <router-link :to="{name:'Portfolio'}"  exact class="item"><span>Portfolio</span></router-link>
+        <router-link :to="{name:'Articles', params: { page: 1 }}" exact class="item"><span>Le blog</span></router-link>
+        <router-link :to="{name:'Contact'}" exact class="item"><span>Contact</span></router-link>
+      </div>
+      <!--<div class="right menu">
         <div class="item">
           <div class="ui action left icon input">
             <i class="search icon"></i>
@@ -16,7 +18,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
     <router-view name="hello"></router-view>
     <router-view name="blog"></router-view>
@@ -24,7 +26,7 @@
     <router-view name="contact"></router-view>
     <footer class="ui inverted vertical footer segment form-page">
       <div class="ui container center aligned">
-        &copy; Picolabs - {{annee}}
+        &copy; Picolabs / Link / Contact / Mentions légales
       </div>
     </footer>
     <div class="totop">

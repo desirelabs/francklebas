@@ -1,13 +1,22 @@
 <template>
   <div>
-    <section class="content-section" v-for="section in sections">
+    <div class="ui vertical masthead center aligned">
       <div class="ui container">
-        <header class="header">
+        <h1 class="ui inverted header">
+          {{masterhead.title}}
+        </h1>
+        <h2>{{masterhead.subtitle}}</h2>
+        <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
+      </div>
+    </div>
+    <section class="content-section" v-for="section in sections">
+      <header class="header">
+        <div class="header-inner">
           <h2>{{ section.title }}</h2>
-          <blockquote>
-            <p>{{ section.subtitle }}</p>
-          </blockquote>
-        </header>
+          <h3>{{ section.subtitle }}</h3>
+        </div>
+      </header>
+      <div class="ui container">
         <div :class="'ui '+section.colSize+' column grid'">
           <div class="column" v-for="content in section.contents" :style="'text-align:'+content.textAlign">
             <img v-if="content.image != ''" :src="'/static/images/'+content.image" :alt="content.imageAlt" width="100%">
@@ -66,6 +75,10 @@
     data() {
       return {
         modal: false,
+        masterhead: {
+          title: "Un titre accrocheur",
+          subtitle: "Une accroche qui le sublime"
+        },
         sections: [
           {
             title: "Webdesign",
@@ -119,19 +132,19 @@
                 text: "Améliorer sa visibilité sur les réseaux sociaux est un enjeu majeur de croissance économique. J'accompagne les marques dans cette démarche en dispensant des formations aux outils offerts par et pour les réseaux sociaux."
               },
               {
+                image: "analytics.png",
+                imageAlt: "Analyse des données",
+                textAlign: "center",
+                title: "Analyse des données",
+                text: "Les données sont au cœur de chaque démarche de création et d'amélioration. Vous aider à accéder et à comprendre les données de votre métier, c'est offrir des perspective de croissance en comprenant leurs enjeux."
+              },
+              {
                 image: "infinite.png",
                 imageAlt: "Organisation du travail",
                 textAlign: "center",
                 title: "Organisation du travail",
                 text: "J'aide les intervenants à améliorer leur productivité via l'utilisation d'outils d'organisation en vue de les aider à gagner en efficacité."
               },
-              {
-                image: "analytics.png",
-                imageAlt: "Analyse des données",
-                textAlign: "center",
-                title: "Analyse des données",
-                text: "Les données sont au cœur de chaque démarche de création et d'amélioration. Vous aider à accéder et à comprendre les données de votre métier, c'est offrir des perspective de croissance en comprenant leurs enjeux."
-              }
             ]
           },
           {
@@ -176,6 +189,10 @@
       displayModal() {
         $('.ui.modal').modal('show');
       }
+    },
+    mounted() {
+      let menuHeight = document.querySelector('.menu').offsetHeight
+      document.querySelector('.masthead').style.height = (window.innerHeight - menuHeight) + "px"
     }
   }
 </script>
