@@ -18,14 +18,7 @@ export default new Router({
       components: {
         hello: Hello
       }
-    }, /*
-     {
-     path: '/lightbox',
-     name: 'Lightbox',
-     components: {
-     lightbox:Lightbox
-     }
-     },*/
+    },
     {
       path: '/portfolio',
       name: 'Portfolio',

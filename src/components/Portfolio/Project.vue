@@ -6,33 +6,26 @@
         <h3>{{project.description}}</h3>
       </div>
     </header>
-    <div class="spacer spacer-right"></div>
+    <div class="spacer spacer-left"></div>
     <div class="ui grid">
       <div class="one column row">
         <div class="column">
-          <ul style="text-align: right;">
-            <li><strong>Client : </strong>{{project.client}}</li>
-            <li><strong>Agence : </strong>{{project.agence}}</li>
-            <li><strong>Rôle : </strong>{{project.role}}</li>
-            <li>
-              <ul class="tech-list">
-                <li v-for="techno in project.technologies">
-                  <img :src="'/static/images/'+techno+'.png'" :alt="techno" height="50">
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <div>
+            <span><strong>Client : </strong>{{project.client}}</span> //
+            <span><strong>Agence : </strong>{{project.agence}}</span> //
+            <span><strong>Rôle : </strong>{{project.role}}</span>
+          </div>
         </div>
       </div>
     </div>
-
+    <div class="spacer spacer-invisible"></div>
     <div class="ui grid">
-      <div class="four column row">
+      <div class="two column row">
         <div class="column" v-for="image in project.images" v-if="!image.vignette">
-          <h4>{{image.title}}</h4>
           <a data-fancybox="gallery" :href="'/static/images/projects/'+project.group+'/'+image.image" class="fancybox">
             <img :src="'/static/images/projects/'+project.group+'/'+image.image" :alt="image.title" width="100%">
           </a>
+          <h4>{{image.title}}</h4>
         </div>
       </div>
     </div>
@@ -40,10 +33,27 @@
 </template>
 
 <script>
+  import store from './PortfolioStore'
   export default {
     name: "project",
-    props: {
-      project: Object
+    data() {
+      return {
+        state: store.state,
+        project: false
+      }
+    },
+    methods: {
+      getProject(slug) {
+        return store.getProjectBySlug(slug)
+      }
+    },
+    mounted() {
+      if( this.$route.params.slug ) {
+        this.project = store.getProjectBySlug(this.$route.params.slug)[0]
+        console.log(this.project)
+      } else {
+        this.$parent.route = false
+      }
     }
   }
 </script>

@@ -13,7 +13,6 @@ $primary: #F03861;
     padding: 3rem;
     .header-inner {
       display: inline-block;
-      max-width: 66%;
       padding: 0 2rem;
       h2 {
         font-family: 'webfontregular', serif;
@@ -29,20 +28,22 @@ $primary: #F03861;
     }
   }
   &:nth-child(even) {
-    .header {
-      text-align: left;
-      overflow: hidden;
-      .header-inner {
-        border-left: 10px solid $primary;
-      }
-    }
-  }
-  &:nth-child(odd) {
-    .header {
+    .header,
+    .header-right {
       text-align: right;
       overflow: hidden;
       .header-inner {
         border-right: 10px solid $primary;
+      }
+    }
+  }
+  &:nth-child(odd)  {
+    .header,
+    .header-left {
+      text-align: left;
+      overflow: hidden;
+      .header-inner {
+        border-left: 10px solid $primary;
       }
     }
   }

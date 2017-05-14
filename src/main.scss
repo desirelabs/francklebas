@@ -1,49 +1,21 @@
 
 @import "assets/scss/mixins";
 @import "assets/scss/colors";
+@import "assets/scss/layout";
 @import "assets/scss/typography";
 @import "assets/scss/navigation";
 @import "assets/scss/spacer";
 
-* {
-    box-sizing: border-box;
+/**
+ * Transition between pages
+ */
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
 }
-html {
-    height: 100%;
-    font-size:100%;
-    overflow:auto;
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+    opacity: 0
 }
-body {
-    @include font-size(22px);
-    color: #707070;
-}
-p {
-    @include font-size(22px);
-}
-body,
-.ui.text.container {
-    font-family: 'webfontregular', serif;
-}
-h1, h2, h3, h4, h5, h6 {
-    font-family:  'François One', sans-serif;
-    color: #000;
-}
-header {
-    text-align: center;
-    h2 {
-        margin-bottom: 1.5rem !important;
-    }
-    blockquote{
-        &::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: #656565;
-            margin: 2rem auto 1.5rem;
-        }
-    }
-}
+
 .totop {
     width: 60px;
     height: 60px;

@@ -46,7 +46,6 @@
         })
       },
       queryPosts(request) {
-        console.log(request)
         this.$http.get(request).then((response)=>{
           let datas = response.data
           this.totalPages = parseInt(response.headers.map['X-WP-TotalPages'][0])
@@ -77,7 +76,6 @@
         let params = this.$route.params
         let query = this.$route.query
         if( query.search !== "" ) {
-          console.log(query.search)
           this.query = query
         }
         if (params.page || query.search == ""){

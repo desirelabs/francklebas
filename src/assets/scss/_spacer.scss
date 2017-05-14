@@ -8,4 +8,12 @@
   &.spacer-right {
     margin-right: 0;
   }
+
+  &.spacer-left {
+    margin-left: 0;
+  }
+
+  &.spacer-invisible {
+    opacity: 0;
+  }
 }

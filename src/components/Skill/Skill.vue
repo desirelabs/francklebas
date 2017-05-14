@@ -1,14 +1,22 @@
 <template>
   <div>
-    <div class="ui vertical masthead center aligned">
-      <div class="ui container">
-        <h1 class="ui inverted header">
-          {{masterhead.title}}
-        </h1>
-        <h2>{{masterhead.subtitle}}</h2>
-        <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
+    <section class="ui vertical masthead center aligned content-section">
+      <div class="ui container-fluid">
+        <div class="ui two column grid">
+          <div class="column">
+            <header class="header left">
+              <div class="header-inner">
+                <h2>{{masterhead.title}}</h2>
+                <h3>{{masterhead.subtitle}}</h3>
+              </div>
+            </header>
+          </div>
+          <div class="column">
+            Hello
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
     <section class="content-section" v-for="section in sections">
       <header class="header">
         <div class="header-inner">
@@ -76,8 +84,8 @@
       return {
         modal: false,
         masterhead: {
-          title: "Un titre accrocheur",
-          subtitle: "Une accroche qui le sublime"
+          title: "Bonjour, je m'appelle Franck",
+          subtitle: "Je suis développeur frontend, et bien plus encore..."
         },
         sections: [
           {

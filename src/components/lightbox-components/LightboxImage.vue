@@ -55,7 +55,6 @@
       image.src = this.image
       this.resizeEvent = () => {
         this.resizeImage(image)
-        console.log('resize')
       }
       window.addEventListener('resize', this.resizeEvent)
     },

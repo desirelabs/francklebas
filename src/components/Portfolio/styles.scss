@@ -1,5 +1,16 @@
 $primary: #ff4853;
 $space: 50px;
+
+/**
+ * Transition between projects
+ */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
+
 .projects-list {
   display: flex;
   flex-flow: wrap;
@@ -18,6 +29,7 @@ $space: 50px;
       line-height: 0;
       &::after {
         content: '';
+        font-family: Icons;
         display: block;
         position: absolute;
         top: 0;
@@ -26,12 +38,17 @@ $space: 50px;
         height: 100%;
         transition: width 0.3s ease-in-out;
         background-color: rgba($primary,.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
       }
     }
     &:hover {
       cursor: pointer;
       .image{
         &::after {
+          content: "\f002";
           width: 100%;
         }
       }
@@ -49,13 +66,27 @@ $space: 50px;
 .fancybox {
   position: relative;
   display: block;
+  overflow: hidden;
+  padding-bottom: 66%;/*
+  margin-bottom: #{$space};*/
+  img {
+    position: absolute;
+  }
   &::after {
     content: "";
     font-family: Icons;
     opacity: 0;
-    color: transparent;
-    background-color: transparent;
+    color: $primary;
+    background-color: rgba(#fff, 0);
     transition: all 0.3s ease-in-out;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   &:hover {
     cursor: pointer;
@@ -65,14 +96,6 @@ $space: 50px;
       color: $primary;
       background-color: rgba(#fff, 0.8);
       transition: all 0.3s ease-in-out;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
   }
 }
@@ -100,4 +123,14 @@ ul {
   margin-top: 0;
   font-weight: normal;
   transition: margin-left 0.3s ease-in-out;
+}
+
+
+
+@media only screen and (max-width: 480px) {
+  .projects-list .project {
+    width: 100%;
+    margin-bottom: 15px !important;
+    margin-top: 15px !important;
+  }
 }

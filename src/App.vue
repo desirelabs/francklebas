@@ -1,12 +1,11 @@
 <template>
   <div id="wrapper" class="pusher">
     <div class="ui menu">
-      <!--<div class="header item">Brand</div>-->
       <div class="menu-links">
-        <router-link :to="{name:'Acceuil'}" exact class="item"><span>Accueil</span></router-link>
-        <router-link :to="{name:'Portfolio'}"  exact class="item"><span>Portfolio</span></router-link>
-        <router-link :to="{name:'Articles', params: { page: 1 }}" exact class="item"><span>Le blog</span></router-link>
-        <router-link :to="{name:'Contact'}" exact class="item"><span>Contact</span></router-link>
+        <router-link :to="{name:'Acceuil'}" exact class="item"><span>Accueil</span><i class="home icon"></i></router-link>
+        <router-link :to="{name:'Portfolio'}"  exact class="item"><span>Portfolio</span><i class="image icon"></i></router-link>
+        <router-link :to="{name:'Articles', params: { page: 1 }}" exact class="item"><span>Le blog</span><i class="feed icon"></i></router-link>
+        <router-link :to="{name:'Contact'}" exact class="item"><span>Contact</span><i class="mail icon"></i></router-link>
       </div>
       <!--<div class="right menu">
         <div class="item">
@@ -20,10 +19,18 @@
         </div>
       </div>-->
     </div>
-    <router-view name="hello"></router-view>
-    <router-view name="blog"></router-view>
-    <router-view name="portfolio"></router-view>
-    <router-view name="contact"></router-view>
+    <transition name="fade">
+      <router-view name="hello"></router-view>
+    </transition>
+    <transition name="fade">
+      <router-view name="blog"></router-view>
+    </transition>
+    <transition name="fade">
+      <router-view name="portfolio"></router-view>
+    </transition>
+    <transition name="fade">
+      <router-view name="contact"></router-view>
+    </transition>
     <footer class="ui inverted vertical footer segment form-page">
       <div class="ui container center aligned">
         &copy; Picolabs / Link / Contact / Mentions légales
@@ -85,4 +92,5 @@
   }
 </script>
 
-<style src="./main.scss" lang="scss"></style>
+<style src="./main.scss" lang="scss">
+</style>
