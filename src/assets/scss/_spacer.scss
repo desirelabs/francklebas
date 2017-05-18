@@ -16,4 +16,11 @@
   &.spacer-invisible {
     opacity: 0;
   }
+
+  &.spacer-mini {
+    width: 30px;
+    background-color: #333;
+    height: 3px;
+    margin: 1.5rem auto 2rem;
+  }
 }

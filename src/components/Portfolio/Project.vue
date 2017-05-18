@@ -1,4 +1,5 @@
 <template>
+  <main class="ui main container-large portfolio">
   <section class="content-section project">
     <header class="header">
       <div class="header-inner">
@@ -30,6 +31,7 @@
       </div>
     </div>
   </section>
+  </main>
 </template>
 
 <script>

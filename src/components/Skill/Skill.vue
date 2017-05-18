@@ -42,37 +42,9 @@
             <p>Du texte</p>
           </blockquote>
         </header>
-        <div class="ui one column grid">
-          <div class="column" style="text-align: center;">
-            <div class="ui modal">
-              <div class="header">Formulaire de contact</div>
-              <div class="content">
-                <form class="ui form">
-                  <div class="field">
-                    <label>Nom</label>
-                    <input type="text" name="nom" placeholder="Nom">
-                  </div>
-                  <div class="field">
-                    <label>Prénom</label>
-                    <input type="text" name="prenom" placeholder="Prénom">
-                  </div>
-                  <div class="field">
-                    <label>Email</label>
-                    <input type="text" name="email" placeholder="Email">
-                  </div>
-                  <div class="field">
-                    <label>Votre message</label>
-                    <textarea name="message" cols="30" rows="10" placeholder="Votre message"></textarea>
-                  </div>
-                  <button class="ui button" type="submit" @click.prevent="">Envoyer !</button>
-                </form>
-              </div>
-            </div>
-            <button class="ui huge primary button" @click="displayModal">
-              Contactez-moi !
-            </button>
-          </div>
-        </div>
+        <button class="ui huge primary button" @click="displayModal">
+          Contactez-moi !
+        </button>
       </div>
     </section>
   </div>

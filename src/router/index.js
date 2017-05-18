@@ -1,10 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import Articles from '@/components/Blog/Articles'
-import Lightbox from '@/components/lightbox-components/Lightbox'
 import Portfolio from '@/components/Portfolio/Portfolio'
-import Component from '@/components/Component'
+import Project from '@/components/Portfolio/Project'
 import Contact from '@/components/Contact'
 
 Vue.use(Router)
@@ -28,37 +26,9 @@ export default new Router({
     },
     {
       path: '/portfolio/:slug',
-      name: 'Portfolio',
+      name: 'Project',
       components: {
-        portfolio: Portfolio
-      }
-    },
-    {
-      path: '/comp',
-      name: 'Component',
-      components: {
-        Component
-      }
-    },
-    {
-      path: '/articles/:page(\\d+)',
-      name: 'Articles',
-      components: {
-        blog: Articles
-      }
-    },
-    {
-      path: '/articles/all',
-      name: 'Articles',
-      components: {
-        blog: Articles
-      }
-    },
-    {
-      path: '/:article?',
-      name: 'Article',
-      components: {
-        blog: Articles
+        portfolio: Project
       }
     },
     {

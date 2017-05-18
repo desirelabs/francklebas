@@ -64,6 +64,35 @@ footer {
   margin: 2rem auto;
 }
 
+.site-title {
+  h1 {
+    font-family: lights_of_the_stardustregular;
+    font-weight: normal;
+    text-align: center;
+    font-size: 4rem;
+    margin-bottom: 0;
+  }
+  h2 {
+    display: none;
+    font-family: lights_of_the_stardustregular;
+    font-weight: normal;
+    text-align: center;
+    font-size: 2.9rem;
+    margin-top: 0;
+  }
+  a {
+    color: rgba(0,0,0,.87);
+    transition: color 0.15s ease-in-out;
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+:focus {
+  outline: none
+}
+
 @media only screen and (max-width: 480px) {
   .container-large {
     padding-left: 7px;
