@@ -21,9 +21,9 @@
     <div class="spacer spacer-invisible"></div>
     <div class="ui grid">
       <div class="two column row">
-        <div class="column" v-for="image in project.images" v-if="!image.vignette">
-          <a data-fancybox="gallery" :href="'/static/images/projects/'+project.group+'/'+image.image" class="fancybox">
-            <img :src="'/static/images/projects/'+project.group+'/'+image.image" :alt="image.title" width="100%">
+        <div class="column" v-for="image in project.images">
+          <a data-fancybox="gallery" :href="image.image.value.main.url" class="fancybox">
+            <img :src="image.image.value.main.url" :alt="image.image.value.main.alt" width="100%">
           </a>
           <h4>{{image.title}}</h4>
         </div>
@@ -33,26 +33,22 @@
 </template>
 
 <script>
-  import store from './PortfolioStore'
   export default {
     name: "project",
     data() {
       return {
-        state: store.state,
-        project: false
+        project: {},
+        source: "http://78679f1be5.testurl.ws",
       }
     },
     methods: {
-      getProject(slug) {
-        return store.getProjectBySlug(slug)
-      }
+
     },
     mounted() {
       if( this.$route.params.slug ) {
-        this.project = store.getProjectBySlug(this.$route.params.slug)[0]
-        console.log(this.project)
-      } else {
-        this.$parent.route = false
+        this.$http.get(this.source+'/projects/'+this.$route.params.slug).then((response)=>{
+          this.project = response.data
+        })
       }
     }
   }

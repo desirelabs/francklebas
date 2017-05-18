@@ -3,7 +3,7 @@
     <div class="ui menu">
       <div class="menu-links">
         <router-link :to="{name:'Acceuil'}" exact class="item"><span>Accueil</span><i class="home icon"></i></router-link>
-        <router-link :to="{name:'Portfolio'}"  exact class="item"><span>Portfolio</span><i class="image icon"></i></router-link>
+        <router-link :to="{name:'Portfolio'}" class="item"><span>Portfolio</span><i class="image icon"></i></router-link>
         <router-link :to="{name:'Articles', params: { page: 1 }}" exact class="item"><span>Le blog</span><i class="feed icon"></i></router-link>
         <router-link :to="{name:'Contact'}" exact class="item"><span>Contact</span><i class="mail icon"></i></router-link>
       </div>

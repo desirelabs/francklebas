@@ -1,85 +1,53 @@
+/*import Vuex from 'vuex'
+
+const state = {
+  projects: []
+}
+
+const mutations = {
+  ADD_PROJECT: (state, project) => {
+    state.projects.push(project)
+  }
+}
+
+const actions = {
+  addProject: project => {
+    PortfolioStore.commit('ADD_PROJECT', project)
+  },
+  addProjects: projects => {
+    projects.forEach((project) => {
+      this.addProject(project)
+    })
+  }
+}
+
+const getters = {
+  projects: state => state.projects,
+  project: (state, slug) => state.projects.filter(project => project.slug = slug)
+}
+
+let store = new Vuex.Store({
+
+  state: state,
+  mutations: mutations,
+  getters: getters,
+  actions: actions,
+  strict: true
+
+})
+
+global.PortfolioStore = store
+export default PortfolioStore*/
+
+
+
+
+
+
 class PortfolioStore {
   constructor(){
     this.state = {
-      projects: [
-        {
-          "title": "Banque de Luxembourg",
-          "slug": "banque-de-luxembourg",
-          "subtitle": "Refonte",
-          "description": "Pour satisfaire aux usages mobiles futurs, le site de la Banque de Luxembourg a évolué vers un site totalement responsive, et surtout une version compatible smartphone.",
-          "group": "bdl",
-          "role": "Développeur Frontend",
-          "client": "Banque de Luxembourg",
-          "agence": "Nouvelle MARQUE",
-          "technologies": [
-            "html5",
-            "css3",
-            "javascript"
-          ],
-          "images": [
-            {
-              "vignette": true,
-              "image": "bdl-vignette.png",
-              "title": "Page d'accueil du site Banque de Luxembourg"
-            },
-            {
-              "image": "bdl-homepage.png",
-              "title": "Page d'accueil du site de la Banque de Luxembourg"
-            },
-            {
-              "image": "bdl-news.png",
-              "title": "Page des actualités du site de la Banque de Luxembourg"
-            },
-            {
-              "image": "bdl-news-seule.png",
-              "title": "Actualité complète du site de la Banque de Luxembourg"
-            },
-            {
-              "image": "bdl-investissement.png",
-              "title": "Une page du site de la Banque de Luxembourg"
-            }
-          ]
-        },
-        {
-          "title": "Banque de Luxembourg",
-          "slug": "banque-de-luxembourg-2",
-          "subtitle": "Refonte",
-          "group": "bdl",
-          "images": [
-            {
-              "vignette": true,
-              "image": "bdl-vignette.png",
-              "title": "Page d'accueil du site Banque de Luxembourg"
-            }
-          ]
-        },
-        {
-          "title": "Banque de Luxembourg",
-          "slug": "banque-de-luxembourg-3",
-          "subtitle": "Refonte",
-          "group": "bdl",
-          "images": [
-            {
-              "vignette": true,
-              "image": "bdl-vignette.png",
-              "title": "Page d'accueil du site Banque de Luxembourg"
-            }
-          ]
-        },
-        {
-          "title": "Banque de Luxembourg",
-          "slug": "banque-de-luxembourg-4",
-          "subtitle": "Refonte",
-          "group": "bdl",
-          "images": [
-            {
-              "vignette": true,
-              "image": "bdl-vignette.png",
-              "title": "Page d'accueil du site Banque de Luxembourg"
-            }
-          ]
-        }
-      ],
+      projects: [],
       index: false
     }
   }
@@ -97,7 +65,7 @@ class PortfolioStore {
   }
 
   getProjectBySlug(slug) {
-    return this.state.projects.filter((p)=> p.slug == slug)
+    return this.state.projects.filter((project)=> project.slug == slug)
   }
 
   open(index) {

@@ -3,9 +3,9 @@
     <h1 class="ui header" v-if="!project">Portfolio</h1>
     <transition name="fade">
       <div class="ui projects-list" v-if="!project">
-        <a :href="'/portfolio/'+project.slug" class="project" v-for="project in projects">
+        <a :href="'/portfolio/'+project.uid" class="project" v-for="project in projects">
           <div class="image">
-            <img :src="'/static/images/projects/'+project.group+'/'+project.images[0].image" width="100%">
+            <img :src="project.vignette.url" width="100%">
           </div>
           <h3 class="project-title">{{ project.title }}</h3>
         </a>
@@ -29,6 +29,7 @@
         state: store.state,
         project: false,
         projects: [],
+        source: "http://78679f1be5.testurl.ws",
         route: false
       }
     },
@@ -50,12 +51,17 @@
       }
     },
     mounted() {
-      console.log("mounted")
       if( this.$route.params.slug ) {
-        this.project = store.getProjectBySlug(this.$route.params.slug)
+        this.$http.get(this.source+'/projects/'+this.$route.params.slug).then((response)=>{
+          this.project = response.body
+        })
       } else {
-        this.project = false
-        this.projects = this.state.projects
+        this.$http.get(this.source+'/projects').then((response)=>{
+          console.log(response.data)
+          store.setProjects(response.data)
+          this.projects = this.state.projects
+          this.project = false
+        })
       }
     },
     watch: { // TODO scroll top
