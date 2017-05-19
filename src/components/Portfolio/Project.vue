@@ -4,7 +4,8 @@
     <header class="header">
       <div class="header-inner">
         <h2>{{project.title}}</h2>
-        <h3>{{project.description}}</h3>
+        <h3>{{project.subtitle}}</h3>
+        <div v-html="project.description"></div>
       </div>
     </header>
     <div class="spacer spacer-left"></div>
@@ -41,6 +42,7 @@
       return {
         project: {},
         source: "http://78679f1be5.testurl.ws",
+        sourceDev: "http://localhost:3000"
       }
     },
     methods: {
@@ -48,7 +50,7 @@
     },
     mounted() {
       if( this.$route.params.slug ) {
-        this.$http.get(this.source+'/projects/'+this.$route.params.slug).then((response)=>{
+        this.$http.get(this.sourceDev+'/projects/'+this.$route.params.slug).then((response)=>{
           this.project = response.data
         })
       }

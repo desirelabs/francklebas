@@ -7,8 +7,14 @@ $primary: #F03861;
     width: 100%;
     max-width: 1600px !important;
   }
+  .header-column {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+  }
   .header {
     max-width: 1400px;
+    width: 100%;
     margin: 0 auto;
     padding: 3rem;
     .header-inner {
@@ -36,6 +42,8 @@ $primary: #F03861;
         border-right: 10px solid $primary;
       }
     }
+    .section-content {
+      text-align: right; }
   }
   &:nth-child(odd)  {
     .header,

@@ -1,52 +1,61 @@
 <template>
   <div>
-    <section class="ui vertical masthead center aligned content-section">
-      <div class="ui container-fluid">
+    <section class="ui vertical masterhead center aligned content-section" v-for="section in masterhead">
+      <div class="ui main container-large">
         <div class="ui two column grid">
-          <div class="column">
+          <div class="column header-column">
             <header class="header left">
               <div class="header-inner">
-                <h2>{{masterhead.title}}</h2>
-                <h3>{{masterhead.subtitle}}</h3>
+                <h2>{{section.title}}</h2>
+                <h3>{{section.subtitle}}</h3>
               </div>
             </header>
+            <div class="section-content" v-html="section.content"></div>
           </div>
           <div class="column">
-            Hello
+            <transition name="fadein-left" mode="out-in" tag="div">
+              <img class="" :src="section.vignette.url" alt="section.vignette.alt" style="max-width: 150%;margin-top: -30px;">
+            </transition>
           </div>
         </div>
       </div>
     </section>
-    <section class="content-section" v-for="section in sections">
-      <header class="header">
-        <div class="header-inner">
-          <h2>{{ section.title }}</h2>
-          <h3>{{ section.subtitle }}</h3>
-        </div>
-      </header>
-      <div class="ui container">
-        <div :class="'ui '+section.colSize+' column grid'">
-          <div class="column" v-for="content in section.contents" :style="'text-align:'+content.textAlign">
-            <img v-if="content.image != ''" :src="'/static/images/'+content.image" :alt="content.imageAlt" width="100%">
-            <h3 v-if="content.title != ''">{{content.title}}</h3>
-            <div v-if="content.text != ''" v-html="content.text"></div>
+    <transition-group name="fadein" tag="div">
+      <section class="content-section" :key="section" v-for="(section, index) in sections">
+        <div class="ui container" v-if="index % 2 == 0">
+          <div class="ui two column grid">
+            <div class="column">
+              <img :src="section.vignette.url" :alt="section.vignette.alt" width="100%">
+            </div>
+            <div class="column header-column">
+              <header class="header">
+                <div class="header-inner">
+                  <h2>{{ section.title }}</h2>
+                  <h3>{{ section.subtitle }}</h3>
+                </div>
+              </header>
+              <div class="section-content" v-html="section.content"></div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="content-section">
-      <div class="ui container">
-        <header class="header">
-          <h2>Et si vous me parliez de votre projet</h2>
-          <blockquote>
-            <p>Du texte</p>
-          </blockquote>
-        </header>
-        <button class="ui huge primary button" @click="displayModal">
-          Contactez-moi !
-        </button>
-      </div>
-    </section>
+        <div class="ui container" v-if="index % 2 != 0">
+          <div class="ui two column grid">
+            <div class="column header-column">
+              <header class="header">
+                <div class="header-inner">
+                  <h2>{{ section.title }}</h2>
+                  <h3>{{ section.subtitle }}</h3>
+                </div>
+              </header>
+              <div class="section-content" v-html="section.content"></div>
+            </div>
+            <div class="column">
+              <img :src="section.vignette.url" :alt="section.vignette.alt" width="100%">
+            </div>
+          </div>
+        </div>
+      </section>
+    </transition-group>
   </div>
 </template>
 
@@ -55,124 +64,35 @@
     data() {
       return {
         modal: false,
-        masterhead: {
-          title: "Bonjour, je m'appelle Franck",
-          subtitle: "Je suis développeur frontend, et bien plus encore..."
-        },
-        sections: [
-          {
-            title: "Webdesign",
-            subtitle: "Je conçois des interfaces pour les êtres humains.",
-            colSize: "two",
-            contents: [
-              {
-                image: "apple-devices.png",
-                imageAlt: "Appareils Apple&copy;",
-                textAlign: "",
-                title: "",
-                text: ''
-              },
-              {
-                image: "",
-                imageAlt: "",
-                textAlign: "",
-                title: "",
-                text: `<p>L'enjeu du design est de répondre aux besoins&nbsp;des utilisateurs de la manière la plus simple et ergonomique
-          possible. C'est pourquoi&nbsp;<mark>je place le visiteur au centre de mes préoccupations</mark>
-          lorsque je travaille. A cet effet, je créés des interfaces&nbsp;:
-        </p>
-        <ul>
-          <li>
-            <i class="checkmark icon"></i>
-            Adaptées aux appareils mobiles
-          </li>
-          <li>
-            <i class="checkmark icon"></i>
-            Respectueuses des règles d'accessibilité
-          </li>
-          <li>
-            <i class="checkmark icon"></i>
-            Faciles à utiliser
-          </li>
-        </ul>
-        ... pour rendre l'expérience de navigation la plus agréable possible.`
-              }
-            ]
-          },
-          {
-            title: "Conseil et accompagnement",
-            subtitle: "Je conseille les marques et les accompagne dans l'utilisation des outils de communication digitale.",
-            colSize: "three",
-            contents: [
-              {
-                image: "social-figure.png",
-                imageAlt: "Réseaux sociaux",
-                textAlign: "center",
-                title: "Réseaux sociaux",
-                text: "Améliorer sa visibilité sur les réseaux sociaux est un enjeu majeur de croissance économique. J'accompagne les marques dans cette démarche en dispensant des formations aux outils offerts par et pour les réseaux sociaux."
-              },
-              {
-                image: "analytics.png",
-                imageAlt: "Analyse des données",
-                textAlign: "center",
-                title: "Analyse des données",
-                text: "Les données sont au cœur de chaque démarche de création et d'amélioration. Vous aider à accéder et à comprendre les données de votre métier, c'est offrir des perspective de croissance en comprenant leurs enjeux."
-              },
-              {
-                image: "infinite.png",
-                imageAlt: "Organisation du travail",
-                textAlign: "center",
-                title: "Organisation du travail",
-                text: "J'aide les intervenants à améliorer leur productivité via l'utilisation d'outils d'organisation en vue de les aider à gagner en efficacité."
-              },
-            ]
-          },
-          {
-            title: "A qui s'adressent mes prestations",
-            subtitle: "Je travaille pour les agences qui souhaitent externaliser une partie de leur production frontend, mais aussi pour les PME soucieuses de trouver un interlocuteur unique et à l'écoute.",
-            colSize: "four",
-            contents: [
-              {
-                image: "tpfi.png",
-                imageAlt: "TPFI",
-                textAlign: "",
-                title: "",
-                text: ""
-              },
-              {
-                image: "conseil-superieur-du-notariat.png",
-                imageAlt: "Conseil supérieur du Notariat",
-                textAlign: "",
-                title: "",
-                text: ""
-              },
-              {
-                image: "sud-de-france.png",
-                imageAlt: "Sud de France",
-                textAlign: "",
-                title: "",
-                text: ""
-              },
-              {
-                image: "banque-de-luxembourg.png",
-                imageAlt: "Banque de Luxembourg",
-                textAlign: "",
-                title: "",
-                text: ""
-              }
-            ]
-          }
-        ]
+        sourceDev: "http://localhost:3000",
+        masterhead: [],
+        sections: [],
+        contents: []
       }
     },
     methods: {
       displayModal() {
         $('.ui.modal').modal('show');
+      },
+      queryContents() {
+        this.$http.get(this.sourceDev + '/contents/homepage').then((response) => {
+          this.contents = response.data
+          this.sections = this.contents.filter((content) => content.group.indexOf("masterhead") === -1)
+          this.masterhead = this.contents.filter((content) => content.group.indexOf("masterhead") !== -1)
+          console.log("Success", response)
+        }).catch((error) => {
+          console.log("Error", error)
+        })
+      }
+    },
+    computed: {
+      direction(index) {
+        return index % 2 == 0 ? "left" : "right"
       }
     },
     mounted() {
-      let menuHeight = document.querySelector('.menu').offsetHeight
-      document.querySelector('.masthead').style.height = (window.innerHeight - menuHeight) + "px"
+      this.queryContents()
+
     }
   }
 </script>

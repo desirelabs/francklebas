@@ -5,10 +5,21 @@ $space: 80px;
  * Transition between projects
  */
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
+  opacity: 1;
+  transition: opacity 5s
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
   opacity: 0
+}
+
+.fadein-left-enter-active, .fadein-left-leave-active {
+  margin-left: 60px;
+  opacity: 1;
+  transition: all 5s ease-in-out;
+}
+.fadein-left-enter, .fadein-left-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+  margin-left: 60px;
 }
 
 .projects-list {
@@ -28,20 +39,20 @@ $space: 80px;
       position: relative;
       line-height: 0;
       &::after {
-        content: '';
+        content: "";
         font-family: Icons;
-        display: block;
+        opacity: 0;
+        color: $primary;
+        background-color: rgba(#fff, 0);
+        transition: all 0.3s ease-in-out;
         position: absolute;
         top: 0;
+        bottom: 0;
         left: 0;
-        width: 0;
-        height: 100%;
-        transition: width 0.3s ease-in-out;
-        background-color: rgba($primary,.8);
+        right: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #fff;
       }
     }
     &:hover {
@@ -49,11 +60,15 @@ $space: 80px;
       .image{
         &::after {
           content: "\f002";
-          width: 100%;
+          opacity: 1;
+          color: $primary;
+          background-color: rgba(#fff, 0.8);
+          transition: all 0.3s ease-in-out;
         }
       }
       .project-title {
         margin-left: 15px;
+        color: $primary;
       }
     }
   }

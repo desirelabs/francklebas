@@ -19,6 +19,19 @@
     <transition name="fade">
       <router-view name="portfolio"></router-view>
     </transition>
+    <section class="contact-section">
+      <div class="ui vertical center aligned container">
+        <header class="header">
+          <h2>Et si vous me parliez de vous ?</h2>
+          <blockquote>
+            <p>Vous avez un projet ? Vous souhaitez externaliser une partie de votre production frontend ?</p>
+          </blockquote>
+        </header>
+        <button class="ui huge primary button" @click="displayModal">
+          Contactez-moi !
+        </button>
+      </div>
+    </section>
     <footer class="ui inverted vertical footer segment form-page">
       <div class="ui container center aligned">
         // &copy; Picolabs / <a href="" class="item" @click.prevent="displayModal">Contact</a> / Mentions légales //
@@ -45,7 +58,7 @@
                   <label>Votre message</label>
                   <textarea name="message" cols="30" rows="10" placeholder="Votre message" v-model="form.message"></textarea>
                 </div>
-                <button class="ui button" type="submit">Envoyer !</button>
+                <button class="ui button g-recaptcha" type="submit">Envoyer !</button>
               </form>
             </div>
           </div>
@@ -89,9 +102,6 @@
       }
     },
     mounted() {
-      this.annee = new Date().getFullYear()
-
-
       $(document).ready(function () {
         // Trigger scrolling event
         $(window).scroll(function () {
@@ -102,7 +112,6 @@
             $('.totop').fadeOut();
           }
         });
-
         // Trigger click on the button
         $('body').on('click', '.totop', function () {
           $("html, body").animate({
@@ -110,9 +119,7 @@
           }, 600);
           return false;
         });
-
       });
-
 
     }
   }
