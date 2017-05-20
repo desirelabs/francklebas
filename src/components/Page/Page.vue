@@ -23,6 +23,7 @@
       queryPage(route) {
         this.$http.get(this.sourceDev+'/page/'+route).then((response) => {
           this.content = response.data
+          console.log(response.data)
         }).catch((error) => {
           console.log("Error", error)
         })
