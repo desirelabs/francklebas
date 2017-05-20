@@ -55,7 +55,7 @@ footer {
 #wrapper {
   min-height: 100vh;
   position: relative;
-  padding-bottom: 70px;
+  padding-bottom: 430px;
   position: relative;
 }
 
@@ -93,16 +93,35 @@ footer {
   background-color: #f3f3f3;
   padding-top: 3rem;
   padding-bottom: 3rem;
+  position: absolute !important;
+  bottom: 110px;
+  left: 0;
+  right: 0;
 }
 
 :focus {
   outline: none
 }
 
+@media screen and (max-width: 1400px) {
+  #wrapper {
+    padding: 0 15px;
+    padding-bottom: 450px;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   .container-large {
     padding-left: 7px;
     padding-right: 7px;
+  }
+
+  .contact-section {
+    bottom: 150px;
+  }
+
+  #wrapper {
+    padding-bottom: 590px;
   }
 
   .column {
