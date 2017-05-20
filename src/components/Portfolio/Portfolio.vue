@@ -3,12 +3,14 @@
     <h1 class="ui header" v-if="!project">Portfolio</h1>
     <transition name="fade">
       <div class="ui projects-list" v-if="!project">
-        <a :href="'/portfolio/'+project.uid" class="project" v-for="project in projects">
-          <div class="image">
-            <img :src="project.vignette.url" width="100%">
-          </div>
-          <h3 class="project-title">{{ project.title }}</h3>
-        </a>
+        <div  class="project" v-for="project in projects">
+          <router-link :to="{name:'Project', params: {slug: project.slug}}" exact class="item">
+            <div class="image">
+              <img :src="project.vignette.url" width="100%">
+            </div>
+            <h3 class="project-title">{{ project.title }}</h3>
+          </router-link>
+        </div>
       </div>
     </transition>
     <transition name="fade">

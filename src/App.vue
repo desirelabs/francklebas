@@ -22,6 +22,9 @@
     <transition name="fade">
       <router-view name="portfolio"></router-view>
     </transition>
+    <transition name="fade">
+      <router-view name="project"></router-view>
+    </transition>
     <section class="contact-section">
       <div class="ui vertical center aligned container">
         <header class="header">
@@ -40,7 +43,7 @@
         Franck LEBAS &copy; {{annee}} /
         <a href="" class="item" @click.prevent="displayModal">Contact</a> /
         <router-link :to="{name:'Page', params: {uid: 'mentions-legales'}}" exact class="item"><span>Mentions légales</span></router-link> /
-        <router-link :to="{name:'Page', params: {uid: 'a-propos'}}" exact class="item"><span>A propos</span></router-link> /
+        <router-link :to="{name:'Page', params: {uid: 'a-propos'}}" exact class="item"><span>À propos</span></router-link> /
         <a href="https://opensource.org/licenses/MIT" target="_blank" rel="nofollow">Code source sous licence MIT</a>
       </div>
       <div class="ui container center aligned">
