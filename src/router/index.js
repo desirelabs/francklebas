@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import Portfolio from '@/components/Portfolio/Portfolio'
 import Project from '@/components/Portfolio/Project'
 import Contact from '@/components/Contact'
+import Page from '@/components/Page/Page'
 
 Vue.use(Router)
 
@@ -36,6 +37,13 @@ export default new Router({
       name: 'Contact',
       components: {
         contact: Contact
+      }
+    },
+    {
+      path: '/page/:uid',
+      name: 'Page',
+      components: {
+        page: Page
       }
     },
     {

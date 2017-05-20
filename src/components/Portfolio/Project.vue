@@ -9,7 +9,7 @@
       </div>
     </header>
     <div class="spacer spacer-left"></div>
-    <div class="ui grid">
+    <div class="ui grid stackable">
       <div class="one column row">
         <div class="column">
           <div>
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="spacer spacer-invisible"></div>
-    <div class="ui grid">
+    <div class="ui grid stackable">
       <div class="two column row">
         <div class="column" v-for="image in project.images">
           <a data-fancybox="gallery" :href="image.image.value.main.url" class="fancybox">

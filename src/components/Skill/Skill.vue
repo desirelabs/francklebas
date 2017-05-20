@@ -2,7 +2,7 @@
   <div>
     <section class="ui vertical masterhead center aligned content-section" v-for="section in masterhead">
       <div class="ui main container-large">
-        <div class="ui two column grid">
+        <div class="ui two column grid stackable">
           <div class="column header-column">
             <header class="header left">
               <div class="header-inner">
@@ -23,7 +23,7 @@
     <transition-group name="fadein" tag="div">
       <section class="content-section" :key="section" v-for="(section, index) in sections">
         <div class="ui container" v-if="index % 2 == 0">
-          <div class="ui two column grid">
+          <div class="ui two column grid stackable">
             <div class="column">
               <img :src="section.vignette.url" :alt="section.vignette.alt" width="100%">
             </div>
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="ui container" v-if="index % 2 != 0">
-          <div class="ui two column grid">
+          <div class="ui two column grid stackable">
             <div class="column header-column">
               <header class="header">
                 <div class="header-inner">

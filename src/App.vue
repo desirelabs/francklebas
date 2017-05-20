@@ -17,6 +17,9 @@
       <router-view name="hello"></router-view>
     </transition>
     <transition name="fade">
+      <router-view name="page"></router-view>
+    </transition>
+    <transition name="fade">
       <router-view name="portfolio"></router-view>
     </transition>
     <section class="contact-section">
@@ -34,7 +37,10 @@
     </section>
     <footer class="ui inverted vertical footer segment form-page">
       <div class="ui container center aligned">
-        // &copy; Picolabs / <a href="" class="item" @click.prevent="displayModal">Contact</a> / Mentions légales //
+        // &copy; Picolabs /
+        <a href="" class="item" @click.prevent="displayModal">Contact</a> /
+        <router-link :to="{name:'Page', params: {uid: 'mentions-legales'}}" exact class="item"><span>Mentions légales</span></router-link> /
+        <router-link :to="{name:'Page', params: {uid: 'a-propos'}}" exact class="item"><span>A propos</span></router-link> //
       </div>
       <div class="ui one column grid">
         <div class="column" style="text-align: center;">
