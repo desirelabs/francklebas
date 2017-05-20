@@ -37,7 +37,7 @@
     </section>
     <footer class="ui inverted vertical footer segment form-page">
       <div class="ui container center aligned">
-        // &copy; Picolabs /
+        // Franck LEBAS &copy; /
         <a href="" class="item" @click.prevent="displayModal">Contact</a> /
         <router-link :to="{name:'Page', params: {uid: 'mentions-legales'}}" exact class="item"><span>Mentions légales</span></router-link> /
         <router-link :to="{name:'Page', params: {uid: 'a-propos'}}" exact class="item"><span>A propos</span></router-link> //
