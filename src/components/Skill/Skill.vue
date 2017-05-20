@@ -65,6 +65,7 @@
       return {
         modal: false,
         sourceDev: "http://localhost:3000",
+        source: "http://78679f1be5.testurl.ws",
         masterhead: [],
         sections: [],
         contents: []
@@ -75,7 +76,7 @@
         $('.ui.modal').modal('show');
       },
       queryContents() {
-        this.$http.get(this.sourceDev + '/contents/homepage').then((response) => {
+        this.$http.get(this.source + '/contents/homepage').then((response) => {
           this.contents = response.data
           this.sections = this.contents.filter((content) => content.group.indexOf("masterhead") === -1)
           this.masterhead = this.contents.filter((content) => content.group.indexOf("masterhead") !== -1)

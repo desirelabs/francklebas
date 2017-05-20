@@ -50,7 +50,7 @@
     },
     mounted() {
       if( this.$route.params.slug ) {
-        this.$http.get(this.sourceDev+'/projects/'+this.$route.params.slug).then((response)=>{
+        this.$http.get(this.source+'/projects/'+this.$route.params.slug).then((response)=>{
           this.project = response.data
         })
       }

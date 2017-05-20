@@ -16,12 +16,13 @@
         content: [],
         loader: true,
         sourceDev: "http://localhost:3000",
+        source: "http://78679f1be5.testurl.ws",
         route: ""
       }
     },
     methods: {
       queryPage(route) {
-        this.$http.get(this.sourceDev+'/page/'+route).then((response) => {
+        this.$http.get(this.source+'/page/'+route).then((response) => {
           this.content = response.data
           console.log(response.data)
         }).catch((error) => {

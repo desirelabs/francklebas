@@ -37,10 +37,15 @@
     </section>
     <footer class="ui inverted vertical footer segment form-page">
       <div class="ui container center aligned">
-        // Franck LEBAS &copy; /
+        Franck LEBAS &copy; {{annee}} /
         <a href="" class="item" @click.prevent="displayModal">Contact</a> /
         <router-link :to="{name:'Page', params: {uid: 'mentions-legales'}}" exact class="item"><span>Mentions légales</span></router-link> /
-        <router-link :to="{name:'Page', params: {uid: 'a-propos'}}" exact class="item"><span>A propos</span></router-link> //
+        <router-link :to="{name:'Page', params: {uid: 'a-propos'}}" exact class="item"><span>A propos</span></router-link> /
+        <a href="https://opensource.org/licenses/MIT" target="_blank" rel="nofollow">Code source sous licence MIT</a>
+      </div>
+      <div class="ui container center aligned">
+        Fièrement propulsé par <a href="https://netlify.com" target="_blank" rel="nofollow">Netlify</a> et hébergé par
+        <a href="https://www.gandi.net" target="_blank" rel="nofollow">Gandi</a>
       </div>
       <div class="ui one column grid">
         <div class="column" style="text-align: center;">
@@ -94,9 +99,7 @@
       }
     },
     computed: {
-      search() {
-        return this.search
-      }
+
     },
     methods: {
       displayModal() {
@@ -127,6 +130,7 @@
         });
       });
 
+      this.annee = new Date().getFullYear()
     }
   }
 </script>
