@@ -88,8 +88,15 @@ $primary: #F03861;
         padding-left: 0;
       }
     }
-    img {
-      max-width: 100% !important;
+  }
+
+  div:not(.portfolio){
+    .content-section{
+      img {
+        max-width: 100% !important;
+        margin-top: 1rem !important;
+      }
     }
   }
+
 }

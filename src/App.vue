@@ -90,6 +90,7 @@
     name: 'app',
     data() {
       return {
+        scrolled: false,
         annee: "",
         search: "",
         source: "http://78679f1be5.testurl.ws",
@@ -111,28 +112,20 @@
       queryPost() { // TODO empty search
         if ( this.search !== "" )
           this.$router.push({path: '/articles/all', query: { search: this.search}})
+      },
+      methods: {
+        /*scrollTo () {
+          this.scrolled = window.scrollY > 0
+        }*/
       }
     },
+    destroyed () {
+      //window.removeEventListener('scroll', this.scrollTo);
+    },
     mounted() {
-      $(document).ready(function () {
-        // Trigger scrolling event
-        $(window).scroll(function () {
-          console.log($(this).scrollTop())
-          if ($(this).scrollTop() > 100) {
-            $('.totop').fadeIn();
-          } else {
-            $('.totop').fadeOut();
-          }
-        });
-        // Trigger click on the button
-        $('body').on('click', '.totop', function () {
-          $("html, body").animate({
-            scrollTop: 0
-          }, 600);
-          return false;
-        });
-      });
-
+      /*alert('scroll')
+      $('.totop').show()
+      document.body.addEventListener('scroll', this.scrollTo);*/
       this.annee = new Date().getFullYear()
     }
   }
