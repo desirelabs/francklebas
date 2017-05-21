@@ -45,17 +45,9 @@ header {
   }
 }
 
-footer {/*
-  position: absolute !important;
-  bottom: 0;
-  left: 0;
-  right: 0;*/
-}
-
 #wrapper {
   min-height: 100vh;
   position: relative;
-  /*padding-bottom: 430px;*/
   position: relative;
 }
 
@@ -93,10 +85,6 @@ footer {/*
   background-color: #f3f3f3;
   padding-top: 3rem;
   padding-bottom: 3rem;
-  /*position: absolute !important;
-  bottom: 110px;
-  left: 0;
-  right: 0;*/
 }
 
 :focus {
@@ -114,10 +102,12 @@ footer {/*
   .container-large {
     padding-left: 7px;
     padding-right: 7px;
+    margin: 0 auto;
   }
 
-  .contact-section {
-    /*bottom: 150px;*/
+  .content-section {
+    background-color: #fff;
+    padding: 1rem 0;
   }
 
   #wrapper {
