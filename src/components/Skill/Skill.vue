@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="homepage">
     <section class="ui vertical masterhead center aligned content-section" v-for="section in masterhead">
       <div class="ui main container-large">
         <div class="ui two column grid stackable">

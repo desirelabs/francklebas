@@ -59,12 +59,11 @@ $primary: #F03861;
 
 @media screen and (max-width: 480px) {
 
-  .content-section img {
-    margin-top: 1rem !important;
-  }
-  .content-section:not(.masterhead) {
-    .grid .column:not(.header-column) {
-      display: none;
+  .homepage {
+    .content-section:not(.masterhead) {
+      .grid .column:not(.header-column) {
+        display: none;
+      }
     }
   }
   .content-section {
