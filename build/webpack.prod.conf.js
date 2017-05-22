@@ -36,7 +36,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     }]),
     new PrerenderSpaPlugin(
       path.join(__dirname, 'dist'),
-      ['/', '/portfolio', '/portfolio/page/a-propos', '/portfolio/page/mentions-legales']
+      ['/', '/portfolio', '/page/a-propos', '/page/mentions-legales']
     ),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
