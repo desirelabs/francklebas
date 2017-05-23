@@ -55,7 +55,7 @@
           <div class="ui modal">
             <div class="header">Formulaire de contact</div>
             <div class="content">
-              <form class="ui form" id="contactForm" method="post" action="http://localhost:3000/mail">
+              <form class="ui form" id="contactForm" method="post" :action="source+'/mail'">
                 <div class="field">
                   <label>Nom</label>
                   <input type="text" name="nom" placeholder="Nom" v-model="form.nom">
