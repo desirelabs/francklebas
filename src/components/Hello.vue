@@ -7,8 +7,6 @@
 </template>
 
 <script>
-  import Slider from '@/components/slider-components/Slider'
-  import Slide from '@/components/slider-components/Slide'
   import Skill from '@/components/Skill/Skill'
   export default {
     name: 'hello',
