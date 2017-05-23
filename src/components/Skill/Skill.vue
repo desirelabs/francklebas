@@ -80,9 +80,8 @@
           this.contents = response.data
           this.sections = this.contents.filter((content) => content.group.indexOf("masterhead") === -1)
           this.masterhead = this.contents.filter((content) => content.group.indexOf("masterhead") !== -1)
-          console.log("Success", response)
         }).catch((error) => {
-          console.log("Error", error)
+          //console.log("Error", error)
         })
       }
     },
