@@ -14,7 +14,7 @@
           </div>
           <div class="column">
             <transition name="fadein-left" mode="out-in" tag="div">
-              <img class="" :src="section.vignette.url" alt="section.vignette.alt" style="max-width: 150%;margin-top: -30px;">
+              <img class="" v-lazy="section.vignette.url" alt="section.vignette.alt" style="max-width: 150%;margin-top: -30px;">
             </transition>
           </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="ui container" v-if="index % 2 == 0">
           <div class="ui two column grid stackable">
             <div class="column">
-              <img :src="section.vignette.url" :alt="section.vignette.alt" width="100%">
+              <img v-lazy="section.vignette.url" :alt="section.vignette.alt" width="100%">
             </div>
             <div class="column header-column">
               <header class="header">
@@ -50,7 +50,7 @@
               <div class="section-content" v-html="section.content"></div>
             </div>
             <div class="column">
-              <img :src="section.vignette.url" :alt="section.vignette.alt" width="100%">
+              <img v-lazy="section.vignette.url" :alt="section.vignette.alt" width="100%">
             </div>
           </div>
         </div>

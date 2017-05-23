@@ -24,11 +24,11 @@
       queryPage(route) {
         this.$http.get(this.source+'/page/'+route).then((response) => {
           this.content = response.data
-          console.log(response.data)
+          this.loader = false
         }).catch((error) => {
           console.log("Error", error)
+          this.loader = false
         })
-        this.loader = false
       },
       loadRoute() {
         this.loader = true

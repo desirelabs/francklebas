@@ -1,5 +1,15 @@
 $primary: #F03861;
 
+.content-section:not(.masterhead) {
+
+  .column:not(.header-column) {
+    text-align: center;
+    img {
+      max-height: 500px;
+      width: auto;
+    }
+  }
+}
 .content-section {
   background-color: #fff;
   padding: 4rem 0;
