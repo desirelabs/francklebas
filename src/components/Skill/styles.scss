@@ -1,12 +1,14 @@
 $primary: #F03861;
-
-.content-section:not(.masterhead) {
-
-  .column:not(.header-column) {
-    text-align: center;
-    img {
-      max-height: 500px;
-      width: auto;
+.masterhead {
+  .header-column {
+    text-align: right;
+    .header-inner{
+      border-left: none !important;
+      border-right: 10px solid #F03861;
+      text-align: right;
+    }
+    &+.column {
+      text-align: center;
     }
   }
 }
@@ -99,14 +101,7 @@ $primary: #F03861;
       }
     }
   }
-
-  div:not(.portfolio){
-    .content-section{
-      img {
-        max-width: 100% !important;
-        margin-top: 1rem !important;
-      }
-    }
+  img {
+    max-width: 100% !important;
   }
-
 }

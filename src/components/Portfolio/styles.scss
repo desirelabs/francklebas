@@ -25,6 +25,8 @@ $space: 80px;
 .projects-list {
   display: flex;
   flex-flow: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
   width: calc(100% + #{$space});
   margin-left: -#{$space};
   .project {
