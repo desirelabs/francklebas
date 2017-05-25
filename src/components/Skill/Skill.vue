@@ -58,6 +58,7 @@
 </template>
 
 <script>
+  var Prismic = require('prismic-javascript');
   export default {
     data() {
       return {
@@ -73,17 +74,40 @@
       displayModal() {
         $('.ui.modal').modal('show');
       },
+      setContent(values) {
+        console.log(values)
+      },
       queryContents() {
-        this.$http.get(this.source + '/contents/homepage').then((response) => {
-          this.contents = response.data
+        Prismic.api("https://picolab.prismic.io/api").then((api) => {
+          return api.query([
+              Prismic.Predicates.at('document.type', 'content'),
+              Prismic.Predicates.fulltext('my.content.group', "homepage")
+            ],
+            {orderings: '[document.first_publication_date]'}
+          )
+        }).then((response) => {
+          let values = []
+          response.results.forEach((content)=>{
+            values.push({
+              id: content.id,
+              uid: content.uid,
+              tags: content.tags,
+              slug: content.slug,
+              title: content.data.content.title.value[0].text,
+              subtitle: content.data.content.subtitle.value[0].text,
+              content: content.data.content.content.value[0].text,
+              group: content.data.content.group.value,
+              vignette: content.data.content.vignette.value['main'],
+            })
+          })
+          this.contents = values
           this.sections = this.contents.filter((content) => content.group.indexOf("masterhead") === -1)
           this.masterhead = this.contents.filter((content) => content.group.indexOf("masterhead") !== -1)
-        }).catch((error) => {
-          //console.log("Error", error)
-        })
+        }, function(err) {
+          console.log("Something went wrong: ", err);
+        });
       },
       transition(image) {
-        console.log(image)
         document.querySelector(image).classList.add('fade-in-left')
       }
     },
