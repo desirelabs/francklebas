@@ -24,6 +24,7 @@
 <script>
   import Project from './Project'
   import store from './PortfolioStore'
+  var Prismic = require('prismic-javascript');
   export default {
     components: { Project },
     data() {
@@ -50,21 +51,42 @@
         else {
           console.log("pas de route")
         }
+      },
+      queryProjects() {
+        Prismic.api("https://picolab.prismic.io/api").then((api) => {
+          return api.query([
+              Prismic.Predicates.at('document.type', 'project')
+            ],
+            {orderings: '[project.title desc]'}
+          ).then((response) => {
+            var values = []
+            response.results.forEach((project) => {
+              values.push({
+                id: project.id,
+                uid: project.uid,
+                type: project.type,
+                tags: project.tags,
+                slug: project.uid,
+                title: project.data.project.title.value[0].text,
+                subtitle: project.data.project.subtitle.value.text,
+                description: project.data.project.description.value.text,
+                group: project.data.project.group.value,
+                role: project.data.project.role.value,
+                client: project.data.project.client.value,
+                agence: project.data.project.agence.value,
+                vignette: project.data.project.vignette.value.main,
+                images: project.data.project.images.value
+              })
+            })
+            this.projects = values
+          }).catch((err) => {
+            console.log("Something went wrong: ", err);
+          })
+        })
       }
     },
     mounted() {
-      if( this.$route.params.slug ) {
-        this.$http.get(this.source+'/projects/'+this.$route.params.slug).then((response)=>{
-          this.project = response.body
-        })
-      } else {
-        this.$http.get(this.source+'/projects').then((response)=>{
-          console.log(response.data)
-          store.setProjects(response.data)
-          this.projects = this.state.projects
-          this.project = false
-        })
-      }
+      this.queryProjects()
     },
     watch: { // TODO scroll top
       route: function() {
