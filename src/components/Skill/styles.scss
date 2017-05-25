@@ -1,4 +1,15 @@
 $primary: #F03861;
+
+.fadeinleft-enter-active,
+.fadeinleft-leave-active {
+  transition: all 0.5s ease-in-out;
+}
+.fadeinleft-enter,
+.fadeinleft-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+  margin-left: 60px;
+}
+
 .masterhead {
   .header-column {
     text-align: right;
@@ -11,6 +22,16 @@ $primary: #F03861;
       text-align: center;
     }
   }
+}
+.fade-out-left {
+  opacity:0;
+  margin-right: 60px;
+  margin-top: -30px;
+}
+.fade-in-left {
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+  margin-right: inherit;
 }
 .content-section {
   background-color: #fff;

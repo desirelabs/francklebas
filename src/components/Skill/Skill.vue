@@ -4,18 +4,16 @@
       <div class="ui main container-large">
         <div class="ui two column grid stackable">
           <div class="column header-column">
-            <header class="header left">
-              <div class="header-inner">
-                <h2>{{section.title}}</h2>
-                <h3>{{section.subtitle}}</h3>
-              </div>
-            </header>
-            <div class="section-content" v-html="section.content"></div>
+              <header class="header left">
+                <div class="header-inner">
+                  <h2>{{section.title}}</h2>
+                  <h3>{{section.subtitle}}</h3>
+                </div>
+              </header>
+              <div class="section-content" v-html="section.content"></div>
           </div>
           <div class="column">
-            <transition name="fadein-left" mode="out-in" tag="div">
-              <img class="" v-lazy="section.vignette.url" alt="section.vignette.alt" style="max-width: 150%;margin-top: -30px;">
-            </transition>
+            <img class="fade-out-left" @load="transition('.fade-out-left')" :src="section.vignette.url" alt="section.vignette.alt">
           </div>
         </div>
       </div>
@@ -83,6 +81,10 @@
         }).catch((error) => {
           //console.log("Error", error)
         })
+      },
+      transition(image) {
+        console.log(image)
+        document.querySelector(image).classList.add('fade-in-left')
       }
     },
     computed: {
