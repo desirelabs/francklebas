@@ -36,6 +36,7 @@
 </template>
 
 <script>
+  var Prismic = require('prismic-javascript');
   export default {
     name: "project",
     data() {
@@ -46,13 +47,42 @@
       }
     },
     methods: {
-
+      queryProject(slug) {
+        Prismic.api("https://picolab.prismic.io/api").then((api) => {
+          return api.query([
+              Prismic.Predicates.at('document.type', 'project'),
+              Prismic.Predicates.at('my.project.uid', slug)
+            ],
+            {orderings: '[project.title desc]'}
+          ).then((response) => {
+            var values = []
+            response.results.forEach((project) => {
+              this.project = {
+                id: project.id,
+                uid: project.uid,
+                type: project.type,
+                tags: project.tags,
+                slug: project.uid,
+                title: project.data.project.title.value[0].text,
+                subtitle: project.data.project.subtitle.value.text,
+                description: project.data.project.description.value.text,
+                group: project.data.project.group.value,
+                role: project.data.project.role.value,
+                client: project.data.project.client.value,
+                agence: project.data.project.agence.value,
+                vignette: project.data.project.vignette.value.main,
+                images: project.data.project.images.value
+              }
+            })
+          }).catch((err) => {
+            console.log("Something went wrong: ", err);
+          })
+        })
+      }
     },
     mounted() {
       if( this.$route.params.slug ) {
-        this.$http.get(this.source+'/projects/'+this.$route.params.slug).then((response)=>{
-          this.project = response.data
-        })
+        this.queryProject(this.$route.params.slug)
       }
     }
   }

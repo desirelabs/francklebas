@@ -9,11 +9,12 @@
 </template>
 
 <script>
+  let Prismic = require('prismic-javascript')
   export default {
     name: 'page',
     data() {
       return {
-        content: [],
+        content: {},
         loader: true,
         sourceDev: "http://localhost:3000",
         source: "http://78679f1be5.testurl.ws",
@@ -22,19 +23,51 @@
     },
     methods: {
       queryPage(route) {
-        this.$http.get(this.source+'/page/'+route).then((response) => {
-          this.content = response.data
-          this.loader = false
-        }).catch((error) => {
-          console.log("Error", error)
-          this.loader = false
+        Prismic.api("https://picolab.prismic.io/api").then((api)=>{
+          return api.query([
+              Prismic.Predicates.at('document.type', 'page'),
+              Prismic.Predicates.at('my.page.uid', route)
+            ]
+          ).then((response) => {
+            response.results.forEach((p) => {
+              let content = ""
+              p.data.page.content.value.forEach((slice) => {
+                switch (slice.type) {
+                  case 'paragraph':
+                    content+="<p>"+slice.text+"</p>"
+                    break;
+                  case 'heading2':
+                    content+="<h2>"+slice.text+"</h2>"
+                    break;
+                  case 'heading3':
+                    content+="<h3>"+slice.text+"</h3>"
+                    break;
+                  default:
+                  case 'paragraph':
+                    content+="<p>"+slice.text+"</p>"
+                    break;
+                }
+              })
+              this.content = {
+                id: p.id,
+                uid: p.uid,
+                type: p.type,
+                tags: p.tags,
+                title: p.data.page.title.value[0].text,
+                content: content
+              }
+              this.loader = false
+            })
+          }).catch((error) => {
+            console.log(error)
+            this.loader = false
+          });
         })
       },
       loadRoute() {
         this.loader = true
         if(this.$route.params.uid) {
-          this.route = this.$route.params.uid
-          this.queryPage(this.route)
+          this.queryPage(this.$route.params.uid)
         }
       }
     },
