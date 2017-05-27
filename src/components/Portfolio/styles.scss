@@ -40,6 +40,16 @@ $space: 80px;
     .image{
       position: relative;
       line-height: 0;
+      padding-top: 60%;
+      overflow: hidden;
+      border: 1px solid #eee;
+      img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
       &::after {
         content: "";
         font-family: Icons;
