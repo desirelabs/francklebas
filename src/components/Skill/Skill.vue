@@ -118,7 +118,6 @@
     },
     mounted() {
       this.queryContents()
-
     }
   }
 </script>

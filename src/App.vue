@@ -55,7 +55,7 @@
           <div class="ui modal">
             <div class="header">Formulaire de contact</div>
             <div class="content">
-              <form class="ui form" id="contactForm" method="post" :action="source+'/mail'">
+              <form class="ui form" id="contactForm" @submit.prevent="sendMail(form)">
                 <div class="field">
                   <label>Nom</label>
                   <input type="text" name="nom" placeholder="Nom" v-model="form.nom">
@@ -72,7 +72,15 @@
                   <label>Votre message</label>
                   <textarea name="message" cols="30" rows="10" placeholder="Votre message" v-model="form.message"></textarea>
                 </div>
-                <button class="ui button g-recaptcha" type="submit">Envoyer !</button>
+                <div class="field">
+                  <!--<div class="g-recaptcha" :data-callback="notBot" data-sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"></div>-->
+                  <vue-recaptcha
+                    type="V2"
+                    sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"
+                    @verify="notBot"
+                    @expired="resetCaptcha"></vue-recaptcha>
+                </div>
+                <button class="ui button" :disabled="captcha === false" type="submit">Envoyer !</button>
               </form>
             </div>
           </div>
@@ -82,18 +90,26 @@
     <div class="totop">
       <i class="angle up icon"></i>
     </div>
+    <div class="ui inverted dimmer" :class="{active:loader}">
+      <div class="ui loader"></div>
+    </div>
   </div>
 </template>
 
 <script>
+  import VueRecaptcha from 'vue-recaptcha';
   export default {
     name: 'app',
+    components: { VueRecaptcha },
     data() {
       return {
+        loader: true,
         scrolled: false,
+        captcha: false,
         annee: "",
         search: "",
         source: "http://78679f1be5.testurl.ws",
+        sourceDev: "http://localhost:3000",
         form: {
           nom: "",
           prenom: "",
@@ -103,7 +119,6 @@
       }
     },
     computed: {
-
     },
     methods: {
       displayModal() {
@@ -113,23 +128,35 @@
         if ( this.search !== "" )
           this.$router.push({path: '/articles/all', query: { search: this.search}})
       },
-      methods: {
-        /*scrollTo () {
-          this.scrolled = window.scrollY > 0
-        }*/
+      sendMail(form) {
+        console.log(this.captcha)
+        if( this.captcha ) {
+          this.$http.post(this.source+'/mail', {
+              'origin': window.location.hostname,
+              'captcha': this.captcha,
+              'data': form
+            }).then((response) => { // TODO captach traiter côte serveur
+            $('.ui.modal').modal('hide')
+          })
+        }
+      },
+      notBot() {
+        if(grecaptcha.getResponse())
+          this.captcha = grecaptcha.getResponse()
+      },
+      resetCaptcha(){
+        this.captcha = false
+        grecaptcha.reset()
       }
     },
     destroyed () {
       //window.removeEventListener('scroll', this.scrollTo);
     },
     mounted() {
-      /*alert('scroll')
-      $('.totop').show()
-      document.body.addEventListener('scroll', this.scrollTo);*/
       this.annee = new Date().getFullYear()
+      this.loader = false
     }
   }
 </script>
-
 <style src="./main.scss" lang="scss">
 </style>
