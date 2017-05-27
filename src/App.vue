@@ -149,9 +149,6 @@
         grecaptcha.reset()
       }
     },
-    destroyed () {
-      //window.removeEventListener('scroll', this.scrollTo);
-    },
     mounted() {
       this.annee = new Date().getFullYear()
       this.loader = false

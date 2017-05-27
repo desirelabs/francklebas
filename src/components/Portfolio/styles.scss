@@ -23,19 +23,11 @@ $space: 80px;
 }
 
 .projects-list {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: space-around;
-  align-items: flex-start;
-  width: calc(100% + #{$space});
-  margin-left: -#{$space};
   .project {
-    position: relative;
-    width: calc(50% - #{$space});
-    margin-left: #{$space};
-    margin-bottom: #{$space};
+    width: calc(50% - 40px) !important;
+    margin-bottom: 80px !important;
+    box-sizing: border-box;
     &:nth-child(2n) {
-      margin-top: #{$space};
     }
     .image{
       position: relative;

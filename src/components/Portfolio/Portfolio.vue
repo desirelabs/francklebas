@@ -31,7 +31,8 @@
         project: false,
         projects: [],
         source: "http://78679f1be5.testurl.ws",
-        route: false
+        route: false,
+        scrolled: false
       }
     },
     methods: {
@@ -77,13 +78,49 @@
               })
             })
             this.projects = values
+            this.masonryInit()
+            this.handleScroll()
           }).catch((err) => {
             console.log("Something went wrong: ", err);
           })
         })
+      },
+      masonryInit() {
+        var container = $('.projects-list');
+        container.imagesLoaded(function(){
+          container.masonry({
+            itemSelector: '.project',
+            gutter: 80,
+            columnWidth: function( containerWidth ) {
+              return containerWidth /2;// depends how many boxes per row
+            }(), // () to execute the anonymous function right away and use its result
+            isAnimated: true
+          });
+        });
+
+        /**
+         * Lazy load :)
+         */
+        $(window).scroll(function(e){
+        })
+      },
+      handleScroll() {
+        let items = document.querySelectorAll('.project')
+        let scroll = window.scrollY
+        console.log(scroll)
+        items.forEach((item) => {
+          console.log(scroll)
+          if(!item.classList.contains('animate') && item.offsetTop < scroll ) {
+            item.classList.add('animate')
+          }
+        })
       }
     },
+    destroyed () {
+      window.removeEventListener('scroll', this.handleScroll);
+    },
     mounted() {
+      window.addEventListener('scroll', this.handleScroll);
       this.queryProjects()
     },
     watch: { // TODO scroll top
