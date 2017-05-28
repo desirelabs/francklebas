@@ -30,7 +30,21 @@ var webpackConfig = merge(baseWebpackConfig, {
       // Absolute path to compiled SPA
       path.join(__dirname, '../dist'),
       // List of routes to prerender
-      [ '/', '/page/a-propos/', '/page/mentions-legales/', '/portfolio/', '/portfolio/atsouhaits/', '/portfolio/banque-de-luxembourg/', '/portfolio/geoffrey-couet/', '/portfolio/friendship-ngo/', '/portfolio/brandmining-consulting/' ]
+      [ '/',
+        '/page/a-propos',
+        '/page/mentions-legales',
+        '/portfolio',
+        '/portfolio/atsouhaits',
+        '/portfolio/banque-de-luxembourg',
+        '/portfolio/geoffrey-couet',
+        '/portfolio/friendship-ngo',
+        '/portfolio/brandmining-consulting'
+      ],
+      {
+        captureAfterTime: 5000,
+        ignoreJSErrors: true,
+        maxAttempts: 10,
+      }
     ),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
