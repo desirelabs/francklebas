@@ -44,6 +44,23 @@ var webpackConfig = merge(baseWebpackConfig, {
         captureAfterTime: 5000,
         ignoreJSErrors: true,
         maxAttempts: 10,
+        postProcessHtml: function (context) {
+          var titles = {
+            '/': 'Franck Lebas, webdesigner et développeur frontend',
+            '/page/a-propos': 'A propos',
+            '/page/mentions-legales': 'Mentions légales',
+            '/portfolio': 'Portfolio de Franck Lebas',
+            '/portfolio/atsouhaits': 'Projet : ATSouhaits',
+            '/portfolio/banque-de-luxembourg': 'Projet : Banque de Luxembourg',
+            '/portfolio/geoffrey-couet': 'Projet : Geoffrey Couët',
+            '/portfolio/friendship-ngo': 'Projet : Friendship NGO',
+            '/portfolio/brandmining-consulting': 'Projet : Brandmining Consulting',
+          }
+          return context.html.replace(
+            /<title>[^<]*<\/title>/i,
+            '<title>' + titles[context.route] + '</title>'
+          )
+        }
       }
     ),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
