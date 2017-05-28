@@ -67,7 +67,7 @@
                 tags: project.tags,
                 slug: project.uid,
                 title: project.data.project.title.value[0].text,
-                subtitle: project.data.project.subtitle.value.text,
+                subtitle: project.data.project.subtitle.value[0].text,
                 description: project.data.project.description.value.text,
                 group: project.data.project.group.value,
                 role: project.data.project.role.value,
@@ -78,50 +78,49 @@
               })
             })
             this.projects = values
-            this.masonryInit()
+            this.masonryInit(2, 80)
             this.handleScroll()
           }).catch((err) => {
             console.log("Something went wrong: ", err);
           })
         })
       },
-      masonryInit() {
+      masonryInit(columns, gutter) {
         var container = $('.projects-list');
         container.imagesLoaded(function(){
           container.masonry({
             itemSelector: '.project',
-            gutter: 80,
+            gutter: gutter,
             columnWidth: function( containerWidth ) {
-              return containerWidth /2;// depends how many boxes per row
+              return containerWidth /columns;// depends how many boxes per row
             }(), // () to execute the anonymous function right away and use its result
             isAnimated: true
           });
         });
-
-        /**
-         * Lazy load :)
-         */
-        $(window).scroll(function(e){
-        })
       },
       handleScroll() {
         let items = document.querySelectorAll('.project')
         let scroll = window.scrollY
-        console.log(scroll)
         items.forEach((item) => {
-          console.log(scroll)
           if(!item.classList.contains('animate') && item.offsetTop < scroll ) {
             item.classList.add('animate')
           }
         })
+      },
+      resizeActions() {
+        if(window.width < 480) {
+          this.masonryInit(1, 0)
+        }
       }
     },
     destroyed () {
-      window.removeEventListener('scroll', this.handleScroll);
+      window.removeEventListener('scroll', this.handleScroll)
     },
     mounted() {
-      window.addEventListener('scroll', this.handleScroll);
+      window.addEventListener('scroll', this.handleScroll)
+      window.addEventListener('resize', this.resizeActions)
       this.queryProjects()
+      window.scrollTo(0, 0);
     },
     watch: { // TODO scroll top
       route: function() {

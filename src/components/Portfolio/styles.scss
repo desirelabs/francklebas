@@ -27,14 +27,14 @@ $space: 80px;
     width: calc(50% - 40px) !important;
     margin-bottom: 80px !important;
     box-sizing: border-box;
-    &:nth-child(2n) {
-    }
     .image{
       position: relative;
       line-height: 0;
       padding-top: 60%;
       overflow: hidden;
       border: 1px solid #eee;
+      box-shadow: 0 3px 9px rgba(0,0,0,0.2);
+      transition: box-shadow .3s ease-in-out;
       img {
         position: absolute;
         top: 0;
@@ -62,6 +62,7 @@ $space: 80px;
     &:hover {
       cursor: pointer;
       .image{
+        box-shadow: 0 3px 12px rgba(0,0,0,0.3);
         &::after {
           content: "\f002";
           opacity: 1;
@@ -79,15 +80,17 @@ $space: 80px;
 }
 
 .content-section .header {
-  padding: 0 0 3rem 0;
+  padding: 0 0 1rem 0;
 }
 
 .fancybox {
   position: relative;
   display: block;
   overflow: hidden;
-  padding-bottom: 66%;/*
-  margin-bottom: #{$space};*/
+  padding-bottom: 66%;
+  margin-bottom: 2rem;
+  box-shadow: 0 3px 9px rgba(0,0,0,0.2);
+  transition: box-shadow .3s ease-in-out;
   img {
     position: absolute;
   }
@@ -109,6 +112,7 @@ $space: 80px;
   }
   &:hover {
     cursor: pointer;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.3);
     &::after {
       content: "\f002";
       opacity: 1;
@@ -138,7 +142,7 @@ ul {
 
 .project-title {
   font-family: "francois One";
-  margin-top: 0;
+  margin-top: 1rem;
   font-weight: normal;
   transition: margin-left 0.3s ease-in-out;
 }
@@ -147,7 +151,7 @@ ul {
 
 @media only screen and (max-width: 480px) {
   .projects-list .project {
-    width: 100%;
+    width: 100% !important;
     margin-bottom: 15px !important;
     margin-top: 15px !important;
 

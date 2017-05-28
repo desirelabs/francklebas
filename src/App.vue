@@ -66,7 +66,7 @@
                 </div>
                 <div class="field">
                   <label>Email</label>
-                  <input type="text" name="email" placeholder="Email" v-model="form.email">
+                  <input type="email" name="email" placeholder="Email" v-model="form.email">
                 </div>
                 <div class="field">
                   <label>Votre message</label>
@@ -87,7 +87,7 @@
         </div>
       </div>
     </footer>
-    <div class="totop">
+    <div class="totop" @click="scrollTop">
       <i class="angle up icon"></i>
     </div>
     <div class="ui inverted dimmer" :class="{active:loader}">
@@ -147,11 +147,26 @@
       resetCaptcha(){
         this.captcha = false
         grecaptcha.reset()
+      },
+      scrollToTop() {
+        let scroll = window.scrollY
+        if(scroll > 350) {
+          document.querySelector('.totop').style.display = "block"
+        } else {
+          document.querySelector('.totop').style.display = "none"
+        }
+      },
+      scrollTop() {
+        $("html, body").animate({
+          scrollTop: 0
+        }, 500);
       }
     },
     mounted() {
+      window.addEventListener('scroll', this.scrollToTop)
       this.annee = new Date().getFullYear()
       this.loader = false
+      this.scrollTop
     }
   }
 </script>

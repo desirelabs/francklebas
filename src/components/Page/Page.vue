@@ -73,6 +73,7 @@
     },
     mounted() {
       this.loadRoute()
+      window.scrollTo(0, 0)
     },
     watch: { // TODO scroll top
       $route: function() {

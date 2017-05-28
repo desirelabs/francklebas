@@ -24,10 +24,7 @@
     <div class="ui grid stackable">
       <div class="two column row">
         <div class="column" v-for="image in project.images">
-          <a data-fancybox="gallery" :href="image.image.value.main.url" class="fancybox">
-            <img :src="image.image.value.main.url" :alt="image.image.value.main.alt" width="100%">
-          </a>
-          <h4>{{image.title}}</h4>
+          <a data-fancybox="gallery" :href="image.image.value.main.url" class="fancybox" :style="'background: url('+image.image.value.main.url+') no-repeat 0 0 / cover'"></a>
         </div>
       </div>
     </div>
@@ -64,8 +61,8 @@
                 tags: project.tags,
                 slug: project.uid,
                 title: project.data.project.title.value[0].text,
-                subtitle: project.data.project.subtitle.value.text,
-                description: project.data.project.description.value.text,
+                subtitle: project.data.project.subtitle.value[0].text,
+                description: project.data.project.description.value[0].text,
                 group: project.data.project.group.value,
                 role: project.data.project.role.value,
                 client: project.data.project.client.value,
@@ -84,6 +81,7 @@
       if( this.$route.params.slug ) {
         this.queryProject(this.$route.params.slug)
       }
+      window.scrollTo(0, 0);
     }
   }
 </script>
