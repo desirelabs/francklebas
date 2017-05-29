@@ -73,14 +73,17 @@
                   <textarea name="message" cols="30" rows="10" placeholder="Votre message" v-model="form.message"></textarea>
                 </div>
                 <div class="field">
-                  <!--<div class="g-recaptcha" :data-callback="notBot" data-sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"></div>-->
-                  <vue-recaptcha
+                  <!--<div class="g-recaptcha" @verify="notBot" data-sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"></div>-->
+                  <!--<vue-recaptcha
                     type="V2"
                     sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"
                     @verify="notBot"
-                    @expired="resetCaptcha"></vue-recaptcha>
+                    @expired="resetCaptcha"></vue-recaptcha>-->
                 </div>
-                <button class="ui button" :disabled="captcha === false" type="submit">Envoyer !</button>
+                <!--<div class="field" v-if="responseDesc">
+                  <p>{{captcha}}</p>
+                </div>-->
+                <button class="ui button" type="submit">Envoyer !</button>
               </form>
             </div>
           </div>
@@ -106,6 +109,7 @@
         loader: true,
         scrolled: false,
         captcha: false,
+        responseDesc: false,
         annee: "",
         search: "",
         source: "http://78679f1be5.testurl.ws",
@@ -118,8 +122,6 @@
         }
       }
     },
-    computed: {
-    },
     methods: {
       displayModal() {
         $('.ui.modal').modal('show');
@@ -129,14 +131,16 @@
           this.$router.push({path: '/articles/all', query: { search: this.search}})
       },
       sendMail(form) {
+        this.captcha = grecaptcha.getResponse()
         console.log(this.captcha)
         if( this.captcha ) {
-          this.$http.post(this.source+'/mail', {
+          this.$http.post(this.sourceDev+'/mail', {
               'origin': window.location.hostname,
               'captcha': this.captcha,
               'data': form
             }).then((response) => { // TODO captach traiter côte serveur
-            $('.ui.modal').modal('hide')
+            console.log(response)
+            //$('.ui.modal').modal('hide')
           })
         }
       },
@@ -167,6 +171,9 @@
       this.annee = new Date().getFullYear()
       this.loader = false
       this.scrollTop
+    },
+    watch: {
+
     }
   }
 </script>
