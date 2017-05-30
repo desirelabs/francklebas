@@ -140,7 +140,7 @@
               'data': form
             }).then((response) => { // TODO captach traiter côte serveur
             console.log(response)
-            //$('.ui.modal').modal('hide')
+            $('.ui.modal').modal('hide')
           })
         }
       },
