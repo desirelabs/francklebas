@@ -155,7 +155,7 @@
       scrollToTop() {
         let scroll = window.scrollY
         if(scroll > 350) {
-          document.querySelector('.totop').style.display = "block"
+          document.querySelector('.totop').style.display = "flex"
         } else {
           document.querySelector('.totop').style.display = "none"
         }
