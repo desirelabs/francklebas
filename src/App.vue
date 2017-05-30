@@ -132,14 +132,13 @@
       },
       sendMail(form) {
         this.captcha = grecaptcha.getResponse()
-        console.log(this.captcha)
-        if( this.captcha ) {
-          this.$http.post(this.source+'/mail', {
+        if( this.captcha && this.captcha !== undefined && this.captcha != "" ) {
+          this.$http.post(this.sourceDev+'/mail', {
               'origin': window.location.hostname,
               'captcha': this.captcha,
               'data': form
             }).then((response) => { // TODO captach traiter côte serveur
-            console.log(response)
+            //console.log(response)
             $('.ui.modal').modal('hide')
           })
         }
