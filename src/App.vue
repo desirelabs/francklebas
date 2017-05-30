@@ -10,7 +10,7 @@
         <router-link :to="{name:'Acceuil'}" exact class="item"><span>Accueil</span><i class="home icon"></i></router-link>
         <router-link :to="{name:'Portfolio'}" class="item"><span>Portfolio</span><i class="image icon"></i></router-link>
         <a href="http://desirelabs.fr" rel="nofollow" target="_blank" class="item"><span>Le blog</span><i class="feed icon"></i></a>
-        <a href="mailto:contact@francklebas.fr" class="item"><span>Contact</span><i class="mail icon"></i></a>
+        <a @click.prevent="displayModal" class="item"><span>Contact</span><i class="mail icon"></i></a>
       </div>
     </div>
     <transition name="fade">
@@ -33,7 +33,7 @@
             <p>Vous avez un projet ? Vous souhaitez externaliser une partie de votre production frontend ?</p>
           </blockquote>
         </header>
-        <a class="ui huge primary button" href="mailto:contact@francklebas.fr">
+        <a class="ui huge primary button" @click.prevent="displayModal">
           Contactez-moi !
         </a>
       </div>
@@ -73,7 +73,7 @@
                   <textarea name="message" cols="30" rows="10" placeholder="Votre message" v-model="form.message"></textarea>
                 </div>
                 <div class="field">
-                  <!--<div class="g-recaptcha" @verify="notBot" data-sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"></div>-->
+                  <div class="g-recaptcha" @verify="notBot" data-sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"></div>
                   <!--<vue-recaptcha
                     type="V2"
                     sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"
