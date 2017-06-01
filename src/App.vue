@@ -90,24 +90,22 @@
         </div>
       </div>
     </footer>
-    <div class="totop" @click="scrollTop">
-      <i class="angle up icon"></i>
-    </div>
     <div class="ui inverted dimmer" :class="{active:loader}">
       <div class="ui loader"></div>
     </div>
+    <back-to-top></back-to-top>
   </div>
 </template>
 
 <script>
-  import VueRecaptcha from 'vue-recaptcha';
+  import VueRecaptcha from 'vue-recaptcha'
+  import backToTop from './components/Backtotop.vue'
   export default {
     name: 'app',
-    components: { VueRecaptcha },
+    components: { VueRecaptcha, backToTop },
     data() {
       return {
         loader: true,
-        scrolled: false,
         captcha: false,
         responseDesc: false,
         annee: "",
@@ -150,29 +148,11 @@
       resetCaptcha(){
         this.captcha = false
         grecaptcha.reset()
-      },
-      scrollToTop() {
-        let scroll = window.scrollY
-        if(scroll > 350) {
-          document.querySelector('.totop').style.display = "flex"
-        } else {
-          document.querySelector('.totop').style.display = "none"
-        }
-      },
-      scrollTop() {
-        $("html, body").animate({
-          scrollTop: 0
-        }, 500);
       }
     },
     mounted() {
-      window.addEventListener('scroll', this.scrollToTop)
       this.annee = new Date().getFullYear()
       this.loader = false
-      this.scrollTop
-    },
-    watch: {
-
     }
   }
 </script>
