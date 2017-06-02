@@ -48,12 +48,6 @@
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
     opacity: 0
 }
-.ui.menu {
-    margin-bottom: 0;
-}
-.main.container {
-    margin-top: 7em;
-}
 </style>
 
 <style src="./main.scss" lang="scss"></style>

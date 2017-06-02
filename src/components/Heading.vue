@@ -39,8 +39,8 @@ export default {
 
 <style lang="scss">
 $primary: #F03861;
-
 .ui.menu {
+  margin-bottom: 0;
   flex-direction: column;
   box-shadow: none;
   border: none;
