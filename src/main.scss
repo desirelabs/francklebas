@@ -1,25 +1,8 @@
 @import "assets/scss/scrollbar";
 @import "assets/scss/mixins";
 @import "assets/scss/colors";
-@import "assets/scss/loader";
 @import "assets/scss/buttons";
 @import "assets/scss/layout";
 @import "assets/scss/typography";
 @import "assets/scss/navigation";
 @import "assets/scss/spacer";
-
-/**
- * Transition between pages
- */
-.fade-enter-active, .fade-leave-active {
-    transition: opacity .5s
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-    opacity: 0
-}
-.ui.menu {
-    margin-bottom: 0;
-}
-.main.container {
-    margin-top: 7em;
-}

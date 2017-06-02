@@ -1,4 +1,4 @@
-$primary: #ff4853;
+$primary: #F03861;
 $space: 80px;
 
 /**
@@ -22,66 +22,78 @@ $space: 80px;
   margin-left: 60px;
 }
 
-.projects-list {
-  .project {
-    width: calc(50% - 40px) !important;
-    margin-bottom: 80px !important;
-    box-sizing: border-box;
-    .image{
-      position: relative;
-      line-height: 0;
-      padding-top: 60%;
-      overflow: hidden;
-      border: 1px solid #eee;
-      box-shadow: 0 3px 9px rgba(0,0,0,0.2);
-      transition: box-shadow .3s ease-in-out;
-      img {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-      }
-      &::after {
-        content: "";
-        font-family: Icons;
-        opacity: 0;
-        color: $primary;
-        background-color: rgba(#fff, 0);
-        transition: all 0.3s ease-in-out;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-    &:hover {
-      cursor: pointer;
+.portfolio {
+
+  .project-title {
+    font-family: "francois One";
+    margin-top: 1rem;
+    font-weight: normal;
+    transition: margin-left 0.3s ease-in-out;
+  }
+
+  .projects-list {
+    .project {
+      width: calc(50% - #{$space} / 2) !important;
+      margin-bottom: #{$space} !important;
+      box-sizing: border-box;
       .image{
-        box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+        position: relative;
+        line-height: 0;
+        padding-top: 60%;
+        overflow: hidden;
+        border: 1px solid #eee;
+        box-shadow: 0 3px 9px rgba(0,0,0,0.2);
+        transition: box-shadow .3s ease-in-out;
+        img {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
         &::after {
-          content: "\f002";
-          opacity: 1;
+          content: "";
+          font-family: Icons;
+          opacity: 0;
           color: $primary;
-          background-color: rgba(#fff, 0.8);
+          background-color: rgba(#fff, 0);
           transition: all 0.3s ease-in-out;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
-      .project-title {
-        margin-left: 15px;
-        color: $primary;
+      &:hover {
+        cursor: pointer;
+        .image{
+          box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+          &::after {
+            content: "\f002";
+            opacity: 1;
+            color: $primary;
+            background-color: rgba(#fff, 0.8);
+            transition: all 0.3s ease-in-out;
+          }
+        }
+        .project-title {
+          margin-left: 15px;
+          color: $primary;
+        }
       }
     }
   }
+
+  .content-section .header {
+    padding: 0 0 1rem 0;
+  }
 }
 
-.content-section .header {
-  padding: 0 0 1rem 0;
-}
+
 
 .fancybox {
   position: relative;
@@ -128,24 +140,23 @@ ul {
   list-style: none;
 }
 
-.tech-list {
-  display: flex;
-  justify-content: flex-end;
-  list-style: none;
-  padding-left: 0;
-  padding-top: 15px;
-  height: 50px;
-  li {
-    margin-right: 20px;
+.portfolio-detail {
+  .content-section {
+    .header {
+      .header-inner {
+        text-align: left;
+        border-left: 10px solid $primary !important;
+        border-right: none;
+      }
+    }
+  }
+  .tech-list {
+    padding-top: 15px;
+    min-height: 50px;
   }
 }
 
-.project-title {
-  font-family: "francois One";
-  margin-top: 1rem;
-  font-weight: normal;
-  transition: margin-left 0.3s ease-in-out;
-}
+
 
 
 

@@ -13,12 +13,15 @@
       }
     },
     methods: {
-      scrollToTop() {
+      setVisibility (opacity) {
+        document.querySelector('.totop').style.opacity = opacity
+      },
+      scrollToTop () {
         let scroll = window.scrollY
         if (scroll > 350) {
-          document.querySelector('.totop').style.opacity = 1
+          this.setVisibility (1)
         } else {
-          document.querySelector('.totop').style.opacity = 0
+          this.setVisibility (0)
         }
       },
       scrollTop () {
@@ -34,7 +37,7 @@
       window.removeEventListener('scroll', this.scrollToTop)
     },
     mounted () {
-      this.scrollTop
+      this.setVisibility (0)
     }
   }
 </script>
@@ -45,7 +48,7 @@
     height: 60px;
     line-height: 60px;
     position: fixed;
-    bottom: 60px;
+    bottom: 81px;
     right: 10px;
     display: flex;
     cursor: pointer;
@@ -59,6 +62,17 @@
       display: inline-block;
       height: 60px;
       margin: 0;
+    }
+  }
+  @media only screen and (max-width: 700px) {
+    .totop {
+      width: 40px;
+      height: 40px;
+      bottom: 10px;
+      i {
+        height: 40px;
+        line-height: 40px;
+      }
     }
   }
 </style>
