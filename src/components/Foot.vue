@@ -31,13 +31,11 @@
               <textarea name="message" cols="30" rows="10" placeholder="Votre message" v-model="form.message"></textarea>
             </div>
             <div class="field">
-              <!--<div class="g-recaptcha" @verify="iamNotABot" data-sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"></div>-->
-              <vue-recaptcha sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"></vue-recaptcha>
-              <!--<vue-recaptcha
-                                  type="V2"
-                                  sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"
-                                  @verify="iamNotABot"
-                                  @expired="resetCaptcha"></vue-recaptcha>-->
+              <vue-recaptcha
+                  type="V2"
+                  sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"
+                  @verify="iamNotABot"
+                  @expired="resetCaptcha"></vue-recaptcha>
             </div>
             <button class="ui button" type="submit">Envoyer !</button>
           </form>
