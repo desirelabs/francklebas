@@ -76,7 +76,7 @@ export default {
             })
           })
           this.projects = values
-          this.masonryInit(2, 80)
+          this.masonryInit(2, 32)
           this.handleScroll()
         }).catch((err) => {
           console.log("Something went wrong: ", err)
@@ -84,17 +84,26 @@ export default {
       })
     },
     masonryInit(columns, gutter) {
-      var container = $('.projects-list')
-      container.imagesLoaded( { background: '.project' }, _ => {
-        var msnry = container.masonry({
+      var container = document.querySelector('.projects-list')
+      this.$imagesloaded(container, { background: '.project' }, _ => {
+        let msnry = new this.$masonry(container, {
           itemSelector: '.project',
           gutter: gutter,
           columnWidth: function (containerWidth) {
             return containerWidth / columns// depends how many boxes per row
           }(), // () to execute the anonymous function right away and use its result
-          isAnimated: true
+          isAnimated: true,
+          transitionDuration: 0,
+          initLayout: false
         })
-        this.loader = false
+
+        msnry.once( 'layoutComplete',
+          ( event, laidOutItems ) => {
+            this.loader = false
+          }
+        )
+
+        msnry.layout()
       })
     },
     handleScroll() {
@@ -108,7 +117,9 @@ export default {
     },
     resizeActions() {
       if (window.width < 480) {
-        this.masonryInit(1, 0)
+        this.masonryInit(1, 1)
+      } else {
+        this.masonryInit(2, 32)
       }
     }
   },

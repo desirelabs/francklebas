@@ -11,7 +11,7 @@
         <a class="ui huge primary button" @click.prevent="displayModal">Contactez-moi !</a>
       </div>
       <div class="ui modal">
-        <div class="header">Formulaire de contact</div>
+        <div class="header">Formulaire de contact <div class="ui cancel" @click.prevent="hideModal"><i class="remove icon"></i></div></div>
         <div class="content">
           <form class="ui form" id="contactForm" @submit.prevent="sendMail(form)">
             <div class="field">
@@ -80,6 +80,9 @@ export default {
     displayModal() {
       $('.ui.modal').modal('show')
     },
+    hideModal () {
+      $('.ui.modal').modal('hide')
+    },
     sendMail(form) {
       this.captcha = grecaptcha.getResponse()
       if (this.captcha && this.captcha !== undefined && this.captcha != '') {
@@ -88,7 +91,7 @@ export default {
           'captcha': this.captcha,
           'data': form
         }).then((response) => { // TODO captach traiter côte serveur
-          $('.ui.modal').modal('hide')
+          this.hideModal
         })
       }
     },
@@ -108,4 +111,17 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.cancel {
+  float: right;
+  font-family: Montserrat, sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
+</style>

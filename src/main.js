@@ -3,8 +3,12 @@
 import Vue from 'vue'
 import router from './router'
 import VueResource from 'vue-resource'
+import MasonryLayout from 'masonry-layout'
+import ImagesLoaded from 'imagesloaded'
 
-Vue.use(VueResource)
+Vue.prototype.$imagesloaded = ImagesLoaded
+Vue.prototype.$masonry = MasonryLayout
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
