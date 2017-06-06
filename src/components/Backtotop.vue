@@ -68,7 +68,7 @@
     .totop {
       width: 40px;
       height: 40px;
-      bottom: 10px;
+      bottom: 65px;
       i {
         height: 40px;
         line-height: 40px;
