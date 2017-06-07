@@ -13,6 +13,9 @@
       <div class="ui modal">
         <div class="header">Formulaire de contact <div class="ui cancel" @click.prevent="hideModal"><i class="remove icon"></i></div></div>
         <div class="content">
+          <p>Par téléphone au <a href="tel:+33695681604"><strong>0695 681 604</strong></a></p>
+          <hr>
+          <p>Ou par courriel :</p>
           <form class="ui form" id="contactForm" @submit.prevent="sendMail(form)">
             <div class="field">
               <label>Nom</label>
