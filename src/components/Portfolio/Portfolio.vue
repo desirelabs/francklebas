@@ -139,3 +139,5 @@ export default {
   },
 }
 </script>
+
+<style src="./styles.scss" lang="scss"></style>

@@ -6,7 +6,7 @@ $space: 80px;
  */
 .fade-enter-active, .fade-leave-active {
   opacity: 1;
-  transition: opacity 5s
+  transition: opacity .5s
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
   opacity: 0
@@ -15,7 +15,7 @@ $space: 80px;
 .fadein-left-enter-active, .fadein-left-leave-active {
   margin-left: 60px;
   opacity: 1;
-  transition: all 5s ease-in-out;
+  transition: all .5s ease-in-out;
 }
 .fadein-left-enter, .fadein-left-leave-to /* .fade-leave-active in <2.1.8 */ {
   opacity: 0;

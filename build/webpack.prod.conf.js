@@ -26,43 +26,43 @@ var webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
-  //   new PrerenderSpaPlugin(
-  //     // Absolute path to compiled SPA
-  //     path.join(__dirname, '../dist'),
-  //     // List of routes to prerender
-  //     [ '/',
-  //       '/page/a-propos',
-  //       '/page/mentions-legales',
-  //       '/portfolio',
-  //       '/portfolio/atsouhaits',
-  //       '/portfolio/banque-de-luxembourg',
-  //       '/portfolio/geoffrey-couet',
-  //       '/portfolio/friendship-ngo',
-  //       '/portfolio/brandmining-consulting'
-  //     ],
-  //     {
-  //       captureAfterTime: 8000,
-  //       ignoreJSErrors: true,
-  //       maxAttempts: 10,
-  //       postProcessHtml: function (context) {
-  //         var titles = {
-  //           '/': 'Franck Lebas, webdesigner et développeur frontend',
-  //           '/page/a-propos': 'A propos',
-  //           '/page/mentions-legales': 'Mentions légales',
-  //           '/portfolio': 'Portfolio de Franck Lebas',
-  //           '/portfolio/atsouhaits': 'Projet : ATSouhaits',
-  //           '/portfolio/banque-de-luxembourg': 'Projet : Banque de Luxembourg',
-  //           '/portfolio/geoffrey-couet': 'Projet : Geoffrey Couët',
-  //           '/portfolio/friendship-ngo': 'Projet : Friendship NGO',
-  //           '/portfolio/brandmining-consulting': 'Projet : Brandmining Consulting',
-  //         }
-  //         return context.html.replace(
-  //           /<title>[^<]*<\/title>/i,
-  //           '<title>' + titles[context.route] + '</title>'
-  //         )
-  //       }
-  //     }
-  //   ),
+    // new PrerenderSpaPlugin(
+    //   // Absolute path to compiled SPA
+    //   path.join(__dirname, '../dist'),
+    //   // List of routes to prerender
+    //   [ '/',
+    //     '/page/a-propos',
+    //     '/page/mentions-legales',
+    //     '/portfolio',
+    //     '/portfolio/atsouhaits',
+    //     '/portfolio/banque-de-luxembourg',
+    //     '/portfolio/geoffrey-couet',
+    //     '/portfolio/friendship-ngo',
+    //     '/portfolio/brandmining-consulting'
+    //   ],
+    //   {
+    //     captureAfterTime: 8000,
+    //     ignoreJSErrors: true,
+    //     maxAttempts: 10,
+    //     postProcessHtml: function (context) {
+    //       var titles = {
+    //         '/': 'Franck Lebas, webdesigner et développeur frontend',
+    //         '/page/a-propos': 'A propos',
+    //         '/page/mentions-legales': 'Mentions légales',
+    //         '/portfolio': 'Portfolio de Franck Lebas',
+    //         '/portfolio/atsouhaits': 'Projet : ATSouhaits',
+    //         '/portfolio/banque-de-luxembourg': 'Projet : Banque de Luxembourg',
+    //         '/portfolio/geoffrey-couet': 'Projet : Geoffrey Couët',
+    //         '/portfolio/friendship-ngo': 'Projet : Friendship NGO',
+    //         '/portfolio/brandmining-consulting': 'Projet : Brandmining Consulting',
+    //       }
+    //       return context.html.replace(
+    //         /<title>[^<]*<\/title>/i,
+    //         '<title>' + titles[context.route] + '</title>'
+    //       )
+    //     }
+    //   }
+    // ),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
@@ -93,8 +93,8 @@ var webpackConfig = merge(baseWebpackConfig, {
       inject: true,
       minify: {
         removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
+        collapseWhitespace: false,
+        removeAttributeQuotes: false
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
