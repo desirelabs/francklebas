@@ -27,7 +27,7 @@
       scrollTop () {
         $("html, body").animate({
           scrollTop: 0
-        }, 500);
+        }, 500)
       }
     },
     created () {

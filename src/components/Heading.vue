@@ -21,7 +21,7 @@
           <span>Le blog</span>
           <i class="feed icon"></i>
         </a>
-        <a href="#footer" class="item">
+        <a href="#" class="item" @click.prevent="scrollBottom">
           <span>Contact</span>
           <i class="mail icon"></i>
         </a>
@@ -32,8 +32,19 @@
 
 <script>
 export default {
-  name: 'heading'
+  name: 'heading',
+  data () {
+    return {
 
+    }
+  },
+  methods: {
+    scrollBottom () {
+      $("html, body").animate({
+        scrollTop: document.body.offsetHeight - window.innerHeight
+      }, 700)
+    }
+  }
 }
 </script>
 
