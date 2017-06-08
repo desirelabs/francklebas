@@ -87,8 +87,8 @@ export default {
       $('.ui.modal').modal('hide')
     },
     sendMail(form) {
-      //this.captcha = grecaptcha.getResponse()
-      //if (this.captcha && this.captcha !== undefined && this.captcha != '') {
+      this.captcha = grecaptcha.getResponse()
+      if (this.captcha && this.captcha !== undefined && this.captcha != '') {
         this.$http.post(this.source + '/mail', {
           'origin': window.location.hostname,
           'captcha': this.captcha,
@@ -96,7 +96,7 @@ export default {
         }).then((response) => { // TODO captach traiter côte serveur
           this.hideModal
         })
-      //}
+      }
     },
     iamNotABot() {
       if (grecaptcha.getResponse())
