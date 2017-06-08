@@ -85,26 +85,26 @@ export default {
     },
     masonryInit(columns, gutter) {
       var container = document.querySelector('.projects-list')
-      this.$imagesloaded(container, { background: '.project' }, _ => {
-        let msnry = new this.$masonry(container, {
-          itemSelector: '.project',
-          gutter: gutter,
-          columnWidth: function (containerWidth) {
-            return containerWidth / columns// depends how many boxes per row
-          }(), // () to execute the anonymous function right away and use its result
-          isAnimated: true,
-          transitionDuration: 0,
-          initLayout: false
+      if(container) {
+        this.$imagesloaded(container, { background: '.project' }, _ => {
+          let msnry = new this.$masonry(container, {
+            itemSelector: '.project',
+            gutter: gutter,
+            columnWidth: function (containerWidth) {
+              return containerWidth / columns// depends how many boxes per row
+            }(), // () to execute the anonymous function right away and use its result
+            isAnimated: true,
+            transitionDuration: 0,
+            initLayout: false
+          })
+          msnry.once( 'layoutComplete',
+            ( event, laidOutItems ) => {
+              this.loader = false
+            }
+          )
+          msnry.layout()
         })
-
-        msnry.once( 'layoutComplete',
-          ( event, laidOutItems ) => {
-            this.loader = false
-          }
-        )
-
-        msnry.layout()
-      })
+      }      
     },
     handleScroll() {
       let items = document.querySelectorAll('.project')
