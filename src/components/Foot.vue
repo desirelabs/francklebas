@@ -94,7 +94,7 @@ export default {
           'captcha': this.captcha,
           'data': form
         }).then((response) => { // TODO captach traiter côte serveur
-          this.hideModal
+          this.hideModal()
         })
       }
     },
