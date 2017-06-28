@@ -3,9 +3,9 @@
     <h1 class="ui header" v-if="!project">Portfolio</h1>
     <transition name="fade">
       <div class="ui projects-list" v-if="!project">
-        <div class="project" v-for="project in projects">
-          <router-link :to="{name:'Project', params: {slug: project.slug}}" exact class="item">
-            <div class="image" :style="'background: url('+project.vignette.url+') no-repeat 0 0 / cover'"></div>
+        <div class="project" v-for="(project, key) in projects">
+          <router-link :key="key" :to="{name:'Project', params: {slug: project.slug}}" exact class="item">
+              <div class="image" :style="'background: url('+project.vignette.url+') no-repeat 0 0 / cover'"></div>
             <h3 class="project-title">{{ project.title }}</h3>
           </router-link>
         </div>
@@ -18,16 +18,14 @@
 <script>
 import Project from './Project'
 import Loader from '../Loader'
-import store from './PortfolioStore'
 import Prismic from 'prismic-javascript'
 export default {
   components: { Project, Loader },
   data() {
     return {
-      state: store.state,
       project: false,
       projects: [],
-      source: "http://78679f1be5.testurl.ws",
+      source: false,
       route: false,
       scrolled: false,
       loader: true
@@ -50,7 +48,7 @@ export default {
       }
     },
     queryProjects() {
-      Prismic.api("https://picolab.prismic.io/api").then((api) => {
+      Prismic.api(this.source).then((api) => {
         return api.query([
           Prismic.Predicates.at('document.type', 'project')
         ],
@@ -84,7 +82,7 @@ export default {
       })
     },
     masonryInit(columns, gutter) {
-      var container = document.querySelector('.projects-list')
+      let container = document.querySelector('.projects-list')
       if(container) {
         this.$imagesloaded(container, { background: '.project' }, _ => {
           let msnry = new this.$masonry(container, {
@@ -129,6 +127,7 @@ export default {
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.resizeActions)
+    this.source = process.env.API_URL
     this.queryProjects()
     window.scrollTo(0, 0)
   },

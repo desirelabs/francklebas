@@ -14,7 +14,7 @@
     },
     methods: {
       setVisibility (opacity) {
-        //document.querySelector('.totop').style.opacity = opacity
+        document.querySelector('.totop').style.opacity = opacity
       },
       scrollToTop () {
         let scroll = window.scrollY
