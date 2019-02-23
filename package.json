@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "deploy": "now -e NODE_ENV='production' && now alias -A ./now.json"
   },
   "dependencies": {
     "babel-polyfill": "6.23.0",

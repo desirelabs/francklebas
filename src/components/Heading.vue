@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="container site-title">
-      <h1 class="">
+      <h1 class>
         <a href="/">FranckLebas</a>
       </h1>
       <h2>Web artisan</h2>
@@ -17,10 +17,10 @@
           <span>Portfolio</span>
           <i class="image icon"></i>
         </router-link>
-        <a href="http://desirelabs.fr" rel="nofollow" target="_blank" class="item">
+        <!-- <a href="http://desirelabs.fr" rel="nofollow" target="_blank" class="item">
           <span>Le blog</span>
           <i class="feed icon"></i>
-        </a>
+        </a>-->
         <a href="#" class="item" @click.prevent="scrollBottom">
           <span>Contact</span>
           <i class="mail icon"></i>
@@ -32,24 +32,25 @@
 
 <script>
 export default {
-  name: 'heading',
-  data () {
-    return {
-
-    }
+  name: "heading",
+  data() {
+    return {};
   },
   methods: {
-    scrollBottom () {
-      $("html, body").animate({
-        scrollTop: document.body.offsetHeight - window.innerHeight
-      }, 700)
+    scrollBottom() {
+      $("html, body").animate(
+        {
+          scrollTop: document.body.offsetHeight - window.innerHeight
+        },
+        700
+      );
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
-$primary: #F03861;
+$primary: #f03861;
 
 .ui.menu {
   flex-direction: column;
@@ -63,13 +64,13 @@ $primary: #F03861;
   }
   .item {
     font-family: Montserrat, sans-serif;
-    font-size: .9rem;
+    font-size: 0.9rem;
     line-height: 3rem;
     display: block;
     padding: 0 2rem;
     letter-spacing: 1px;
     text-transform: uppercase;
-    transition: all .3s;
+    transition: all 0.3s;
     box-sizing: border-box;
 
     .icon {
@@ -77,7 +78,7 @@ $primary: #F03861;
     }
 
     &::before {
-      content: '';
+      content: "";
       width: 0;
       display: inline-block;
       position: absolute;
@@ -88,7 +89,7 @@ $primary: #F03861;
       background-color: $primary;
     }
     span::after {
-      content: '';
+      content: "";
       width: 0;
       display: inline-block;
       position: absolute;
@@ -97,13 +98,13 @@ $primary: #F03861;
       right: 32px;
       height: 3px;
       background-color: $primary;
-      transition: width .2s ease-in-out;
+      transition: width 0.2s ease-in-out;
     }
     &.router-link-active,
     &:hover {
       background: none !important;
       span::after {
-        content: '';
+        content: "";
         width: calc(100% - 64px);
       }
     }
@@ -111,9 +112,9 @@ $primary: #F03861;
 }
 
 @media only screen and (max-width: 480px) {
-  $primary: #F03861;
+  $primary: #f03861;
 
-  .ui.menu  {
+  .ui.menu {
     flex-direction: column;
     box-shadow: none;
     border: none;
@@ -125,21 +126,21 @@ $primary: #F03861;
     }
     .item {
       font-family: Montserrat, sans-serif;
-      font-size: .9rem;
+      font-size: 0.9rem;
       line-height: 3rem;
       display: block;
       padding: 0 2rem;
       letter-spacing: 1px;
       text-transform: uppercase;
-      transition: all .3s;
+      transition: all 0.3s;
       box-sizing: border-box;
-      
+
       .icon {
         display: none;
       }
-      
+
       &::before {
-        content: '';
+        content: "";
         width: 0;
         display: inline-block;
         position: absolute;
@@ -149,8 +150,8 @@ $primary: #F03861;
         height: 3px;
         background-color: $primary;
       }
-      span::after{
-        content: '';
+      span::after {
+        content: "";
         width: 0;
         display: inline-block;
         position: absolute;
@@ -159,13 +160,13 @@ $primary: #F03861;
         right: 32px;
         height: 3px;
         background-color: $primary;
-        transition: width .2s ease-in-out;
+        transition: width 0.2s ease-in-out;
       }
       &.router-link-active,
       &:hover {
         background: none !important;
         span::after {
-          content: '';
+          content: "";
           width: calc(100% - 64px);
         }
       }
@@ -173,22 +174,21 @@ $primary: #F03861;
   }
 
   @media only screen and (max-width: 480px) {
-
     .ui.menu {
       position: fixed !important;
       bottom: 0;
       z-index: 1000;
       background-color: #fff;
       padding-bottom: 5px;
-      width:100%;
-      transition: all .5s ease-in;
+      width: 100%;
+      transition: all 0.5s ease-in;
       border-radius: 0;
 
       .menu-links {
         justify-content: space-around;
       }
       .item {
-        padding:0;
+        padding: 0;
         span {
           display: none;
         }

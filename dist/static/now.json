@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "name": "francklebas.fr",
+  "alias": "francklebas.fr",
+  "env": {
+    "API_URL": "https://picolab.prismic.io/api",
+    "MAIL_URL": "https://mail.francklebas.fr/"
+  }
+}

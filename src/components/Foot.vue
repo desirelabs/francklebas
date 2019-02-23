@@ -11,9 +11,18 @@
         <a class="ui huge primary button" @click.prevent="displayModal">Contactez-moi !</a>
       </div>
       <div class="ui modal">
-        <div class="header">Formulaire de contact <div class="ui cancel" @click.prevent="hideModal"><i class="remove icon"></i></div></div>
+        <div class="header">Formulaire de contact
+          <div class="ui cancel" @click.prevent="hideModal">
+            <i class="remove icon"></i>
+          </div>
+        </div>
         <div class="content">
-          <p>Par téléphone au <a href="tel:+33695681604"><strong>0695 681 604</strong></a></p>
+          <p>
+            Par téléphone au
+            <a href="tel:+33698054772">
+              <strong>06 98 05 47 72</strong>
+            </a>
+          </p>
           <hr>
           <p>Ou par courriel :</p>
           <form class="ui form" id="contactForm" @submit.prevent="sendMail(form)">
@@ -31,14 +40,21 @@
             </div>
             <div class="field">
               <label>Votre message</label>
-              <textarea name="message" cols="30" rows="10" placeholder="Votre message" v-model="form.message"></textarea>
+              <textarea
+                name="message"
+                cols="30"
+                rows="10"
+                placeholder="Votre message"
+                v-model="form.message"
+              ></textarea>
             </div>
             <div class="field">
               <vue-recaptcha
-                  type="V2"
-                  sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"
-                  @verify="iamNotABot"
-                  @expired="resetCaptcha"></vue-recaptcha>
+                type="V2"
+                sitekey="6Ld3CSMUAAAAANACpzW7Eef98DqcasUKWmMDrRjk"
+                @verify="iamNotABot"
+                @expired="resetCaptcha"
+              ></vue-recaptcha>
             </div>
             <button class="ui button" type="submit">Envoyer !</button>
           </form>
@@ -47,11 +63,11 @@
     </section>
     <footer class="ui inverted vertical footer segment form-page">
       <div class="ui container center aligned">
-        Franck LEBAS &copy {{annee}} /
-        <a href="" class="item" @click.prevent="displayModal">Contact</a> /
+        Franck LEBAS &copy; {{annee}} /
+        <a href class="item" @click.prevent="displayModal">Contact</a> /
         <router-link :to="{name:'Page', params: {uid: 'mentions-legales'}}" exact class="item">
           <span>Mentions légales</span>
-        </router-link> /
+        </router-link>/
         <router-link :to="{name:'Page', params: {uid: 'a-propos'}}" exact class="item">
           <span>À propos</span>
         </router-link>
@@ -61,57 +77,65 @@
 </template>
 
 <script>
-import VueRecaptcha from 'vue-recaptcha'
+import VueRecaptcha from "vue-recaptcha";
 export default {
-  name: 'foot',
+  name: "foot",
   components: { VueRecaptcha },
   data() {
     return {
-      annee: '',
+      annee: "",
       captcha: false,
       responseDesc: false,
-      source: '',
+      source: "",
       form: {
-        nom: '',
-        prenom: '',
-        email: '',
-        message: ''
+        nom: "",
+        prenom: "",
+        email: "",
+        message: ""
       }
-    }
+    };
   },
   methods: {
     displayModal() {
-      $('.ui.modal').modal('show')
+      $(".ui.modal").modal("show");
     },
-    hideModal () {
-      $('.ui.modal').modal('hide')
+    hideModal() {
+      $(".ui.modal").modal("hide");
     },
     sendMail(form) {
-      this.captcha = grecaptcha.getResponse()
-      if (this.captcha && this.captcha !== undefined && this.captcha != '') {
-        this.$http.post(this.source + '/mail', {
-          'origin': window.location.hostname,
-          'captcha': this.captcha,
-          'data': form
-        }).then((response) => { // TODO captach traiter côte serveur
-          this.hideModal()
-        })
+      const { nom, prenom, email, message } = form;
+      const data = { nom, prenom, email, message };
+      this.captcha = grecaptcha.getResponse();
+      if (this.captcha && this.captcha !== undefined && this.captcha != "") {
+        this.$http
+          .post(this.source, {
+            origin: window.location.hostname,
+            captcha: this.captcha,
+            data: data
+          })
+          .then(response => {
+            // TODO captach traiter côte serveur
+            this.hideModal();
+            this.resetCaptcha();
+          })
+          .catch(err => {
+            this.resetCaptcha();
+          });
       }
     },
     iamNotABot() {
-      if (grecaptcha.getResponse())
-        this.captcha = grecaptcha.getResponse()
+      if (grecaptcha.getResponse()) this.captcha = grecaptcha.getResponse();
     },
     resetCaptcha() {
-      this.captcha = false
-      grecaptcha.reset()
+      this.captcha = false;
+      grecaptcha.reset();
     }
   },
   mounted() {
-    this.source = process.env.MAIL_URL
-    this.annee = new Date().getFullYear()
+    this.source = process.env.MAIL_URL;
+    this.annee = new Date().getFullYear();
   }
-}
+};
 </script>
 
 <style lang="scss">
